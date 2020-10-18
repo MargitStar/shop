@@ -7,7 +7,6 @@ __pycache__/
 *.so
 
 # Distribution / packaging
-secret_info.py
 .idea
 .Python
 build/
@@ -129,3 +128,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+secret_info.py
+
+
+templates/
