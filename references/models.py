@@ -37,3 +37,22 @@ class Series(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Genre(models.Model):
+    genre = models.CharField(
+        "Genre",
+        max_length=50,
+        blank=False,
+        null=False
+    )
+
+    description = models.TextField(
+        "About this genre",
+        max_length=500,
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return self.genre
