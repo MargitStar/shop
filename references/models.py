@@ -56,3 +56,23 @@ class Genre(models.Model):
 
     def __str__(self):
         return self.genre
+
+
+class PublishingHouse(models.Model):
+    house = models.CharField(
+        "Publishing House",
+        max_length=40,
+        blank=False,
+        null=False
+
+    )
+
+    history = models.TextField(
+        "Other books of this house",
+        max_length=500,
+        blank=True,
+        null=True
+    )
+
+    def __str__(self):
+        return self.house
