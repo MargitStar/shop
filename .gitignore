@@ -130,6 +130,6 @@ dmypy.json
 .pyre/
 
 secret_info.py
-
+my_local_settings.py
 
 templates/
