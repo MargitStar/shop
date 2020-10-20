@@ -15,6 +15,8 @@ class Book(models.Model):
     #     "Cover"
     # )
 
+    author_id = models.ManyToManyField(Author)
+
     price = models.DecimalField(
         "Price in BYN",
         default=0.0,
@@ -23,6 +25,8 @@ class Book(models.Model):
         blank=False,
         null=False
     )
+
+    genre_id = models.ManyToManyField(Genre)
 
     publishing_date = models.DateField(
         "Date of publishing",
@@ -48,7 +52,14 @@ class Book(models.Model):
 
     weight = models.PositiveIntegerField(
         "Weight (g)",
-        default=0.0,
+        default=0,
+        blank=False,
+        null=False
+    )
+
+    books_amount = models.PositiveIntegerField(
+        "Left amount",
+        default=0,
         blank=False,
         null=False
     )
@@ -86,7 +97,21 @@ class Book(models.Model):
         null=False
     )
 
-    # genre = models.ManyToManyRel(Genre)
+    entry_date = models.DateTimeField(
+        "Date of entry",
+        auto_now_add=True,
+        null=True,
+        blank=True
+    )
+
+    update_date = models.DateTimeField(
+        "Date of updating",
+        auto_now=True,
+        null=True,
+        blank=True
+    )
+
+
 
     def __str__(self):
         return self.name
