@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from . import my_local_settings
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,7 +25,8 @@ SECRET_KEY = 'nqpa$5^pr(n&f)=w^l-%!am5jl9$f5igvjpb0cv!q=1yl)ery*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['margitstar.pythonanywhere.com',]
+ALLOWED_HOSTS = my_local_settings.allowed_hosts
+
 
 
 # Application definition
@@ -37,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'hello_world.apps.HelloWorldConfig',
-    'references'
+    'references',
+    'books'
 ]
 
 MIDDLEWARE = [
@@ -121,5 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/MargitStar/shop/static'
-MEDIA_ROOT = '/home/MargitStar/shop/media'
+
+STATIC_ROOT = my_local_settings.static_root
+MEDIA_ROOT = my_local_settings.media_root
+
