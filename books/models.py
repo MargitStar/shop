@@ -31,7 +31,7 @@ class Book(models.Model):
         null=False
     )
 
-    pages_amount = models.IntegerField(
+    pages_amount = models.PositiveIntegerField(
         "Amount of pages",
         default=0,
         blank=False,
@@ -46,9 +46,21 @@ class Book(models.Model):
         null=False
     )
 
-    weight = models.IntegerField(
+    weight = models.PositiveIntegerField(
         "Weight (g)",
         default=0.0,
+        blank=False,
+        null=False
+    )
+
+    AGE_LIMIT_CHOICES = (('1', '18+'), ('2', '16+'), ('3', '14+'),
+                         ('4', '12+'), ('5', '10+'), ('6', '8+'),
+                         ('7', '6+'), ('8', '3+'), ('6', '0+'))
+    age_limit = models.CharField(
+        "Age limit",
+        max_length=4,
+        default=1,
+        choices=AGE_LIMIT_CHOICES,
         blank=False,
         null=False
     )
