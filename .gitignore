@@ -133,6 +133,7 @@ secret_info.py
 my_local_settings.py
 
 
+
 templates/
 media/
 static/
