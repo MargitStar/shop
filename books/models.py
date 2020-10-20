@@ -53,6 +53,27 @@ class Book(models.Model):
         null=False
     )
 
+    CHOICES = (('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'),
+               ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'),
+               ('8', '8'), ('9', '9'), ('10', '10'))
+    rating = models.CharField(
+        "Rating",
+        max_length=10,
+        default=0,
+        choices=CHOICES,
+        blank=False,
+        null=False
+    )
+
+    BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
+    is_active = models.BooleanField(
+        "Is active?",
+        choices=BOOL_CHOICES,
+        default=True,
+        blank=False,
+        null=False
+    )
+
     # genre = models.ManyToManyRel(Genre)
 
     def __str__(self):
