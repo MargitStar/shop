@@ -46,12 +46,20 @@ class Book(models.Model):
 
     FORMAT_CHOICES = (('1', '84×108/16'), ('2', '70×90/8'), ('3', '70×90/16'),
                       ('4', '75×90/16'), ('5', '60×90/16'), ('6', '84×108/32'),
-                      ('7', '70×90/32'),('8', '70×108/32'), ('9', '60×90/32'))
+                      ('7', '70×90/32'), ('8', '70×108/32'), ('9', '60×90/32'))
     format = models.CharField(
         "Format",
         max_length=15,
         default=1,
         choices=FORMAT_CHOICES,
+        blank=False,
+        null=False
+    )
+
+    isbn_code = models.CharField(
+        "ISBN",
+        default='',
+        max_length=20,
         blank=False,
         null=False
     )
