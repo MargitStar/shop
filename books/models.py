@@ -15,7 +15,25 @@ class Book(models.Model):
     #     "Cover"
     # )
 
-    author_id = models.ManyToManyField(Author)
+    author = models.ManyToManyField(
+        Author
+    )
+
+    genre = models.ManyToManyField(
+        Genre
+    )
+
+    series = models.ForeignKey(
+        Series,
+        default=1,
+        on_delete=models.PROTECT
+    )
+
+    publishing_house = models.ForeignKey(
+        PublishingHouse,
+        default=1,
+        on_delete=models.PROTECT
+    )
 
     price = models.DecimalField(
         "Price in BYN",
@@ -26,7 +44,17 @@ class Book(models.Model):
         null=False
     )
 
-    genre_id = models.ManyToManyField(Genre)
+    FORMAT_CHOICES = (('1', '84×108/16'), ('2', '70×90/8'), ('3', '70×90/16'),
+                      ('4', '75×90/16'), ('5', '60×90/16'), ('6', '84×108/32'),
+                      ('7', '70×90/32'),('8', '70×108/32'), ('9', '60×90/32'))
+    format = models.CharField(
+        "Format",
+        max_length=15,
+        default=1,
+        choices=FORMAT_CHOICES,
+        blank=False,
+        null=False
+    )
 
     publishing_date = models.DateField(
         "Date of publishing",
@@ -110,8 +138,6 @@ class Book(models.Model):
         null=True,
         blank=True
     )
-
-
 
     def __str__(self):
         return self.name
