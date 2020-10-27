@@ -18,10 +18,14 @@ from django.urls import path
 from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
+from references.views import genre_list_view, genre_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello_world),
+    path('genre/', genre_list_view),
+    path('genre/<int:pk_obj>/', genre_view)
+
 ]
 
 if settings.DEBUG:
