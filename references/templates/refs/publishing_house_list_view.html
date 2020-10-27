@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Publishing Houses</h1>
+{% for publishing_house in publishing_houses %}
+    <b><a href="/publishing_house/{{ publishing_house.pk }}">{{ publishing_house.house}}</a></b><br>
+{% endfor %}
+</body>
+</html>

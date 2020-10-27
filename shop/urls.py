@@ -18,13 +18,17 @@ from django.urls import path
 from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
-from references.views import genre_list_view, genre_view
+from references import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', hello_world),
-    path('genre/', genre_list_view),
-    path('genre/<int:pk_obj>/', genre_view)
+    path('genre/', views.genre_list_view),
+    path('genre/<int:pk_obj>/', views.genre_view),
+    path('author/', views.author_list_view),
+    path('author/<int:pk_obj>/', views.author_view),
+    path('publishing_house/', views.publishing_house_list_view),
+    path('publishing_house/<int:pk_obj>/',views.publishing_house_view)
 
 ]
 
