@@ -28,7 +28,9 @@ urlpatterns = [
     path('author/', views.author_list_view),
     path('author/<int:pk_obj>/', views.author_view),
     path('publishing_house/', views.publishing_house_list_view),
-    path('publishing_house/<int:pk_obj>/',views.publishing_house_view)
+    path('publishing_house/<int:pk_obj>/', views.publishing_house_view),
+    path('series/', views.series_list_view),
+    path('series/<int:pk_obj>/', views.series_view)
 
 ]
 

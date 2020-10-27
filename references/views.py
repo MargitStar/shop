@@ -32,3 +32,13 @@ def publishing_house_list_view(request):
 def publishing_house_view(request, pk_obj):
     context = {'publishing_house': models.PublishingHouse.objects.get(pk=pk_obj)}
     return render(request, template_name='refs/publishing_house_view.html', context=context)
+
+
+def series_list_view(request):
+    context = {'series_list': models.Series.objects.all()}
+    return render(request, template_name='refs/series_list_view.html', context=context)
+
+
+def series_view(request, pk_obj):
+    context = {'series': models.Series.objects.get(pk=pk_obj)}
+    return render(request, template_name='refs/series_view.html', context=context)
