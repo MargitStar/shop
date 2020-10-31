@@ -1,12 +1,9 @@
 from django.shortcuts import render
 
-
 from references import models
 from references import forms
 from django.http import HttpResponseRedirect
 
-
-# Create your views here.
 
 def genre_list_view(request):
     context = {'genres': models.Genre.objects.all()}
@@ -128,3 +125,37 @@ def update_author(request, pk_obj):
         author = models.Author.objects.get(pk=pk_obj)
         form = forms.UpdateAuthor(data={'author': author.author, 'biography': author.biography})
         return render(request, template_name='refs/update_author.html', context={'form': form})
+
+
+def update_series(request, pk_obj):
+    if request.method == "POST":
+        form = forms.UpdateSeries(data=request.POST)
+        if form.is_valid():
+            title = form.cleaned_data.get('title')
+            description = form.cleaned_data.get('description')
+            new_title = models.Series.objects.get(pk=pk_obj)
+            new_title.title = title
+            new_title.description = description
+            new_title.save()
+            return HttpResponseRedirect('/series')
+    else:
+        title = models.Series.objects.get(pk=pk_obj)
+        form = forms.UpdateSeries(data={'title': title.title, 'description': title.description})
+        return render(request, template_name='refs/update_series.html', context={'form': form})
+
+
+def update_publishing_house(request, pk_obj):
+    if request.method == "POST":
+        form = forms.UpdatePublishingHouse(data=request.POST)
+        if form.is_valid():
+            house = form.cleaned_data.get('house')
+            history = form.cleaned_data.get('history')
+            new_house = models.PublishingHouse.objects.get(pk=pk_obj)
+            new_house.house = house
+            new_house.history = history
+            new_house.save()
+            return HttpResponseRedirect('/publishing_house')
+    else:
+        house = models.PublishingHouse.objects.get(pk=pk_obj)
+        form = forms.UpdatePublishingHouse(data={'house': house.house, 'history': house.history})
+        return render(request, template_name='refs/update_publishing_house.html', context={'form': form})

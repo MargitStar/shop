@@ -54,3 +54,21 @@ class UpdateAuthor(forms.ModelForm):
             'author',
             'biography'
         )
+
+
+class UpdateSeries(forms.ModelForm):
+    class Meta:
+        model = models.Series
+        fields = (
+            'title',
+            'description'
+        )
+
+
+class UpdatePublishingHouse(forms.ModelForm):
+    class Meta:
+        model = models.PublishingHouse
+        fields = (
+            'house',
+            'history'
+        )
