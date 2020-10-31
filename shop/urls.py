@@ -30,11 +30,15 @@ urlpatterns = [
     path('publishing_house/<int:pk_obj>/', views.publishing_house_view),
     path('series/', views.series_list_view),
     path('series/<int:pk_obj>/', views.series_view),
-    path('genre/create/',views.create_genre),
+    path('genre/create/', views.create_genre),
+    path('author/create', views.create_author),
+    path('series/create', views.create_series),
+    path('publishing_house/create', views.create_publishing_house),
+    path('genre/<int:pk_obj>/update', views.update_genre),
+    path('author/<int:pk_obj>/update', views.update_author),
     path('', hello_world)
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
-

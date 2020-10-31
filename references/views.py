@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+
 from references import models
 from references import forms
 from django.http import HttpResponseRedirect
@@ -56,3 +58,73 @@ def create_genre(request):
         form = forms.CreateGenre()
 
     return render(request, template_name='refs/create_genre.html', context={'form': form})
+
+
+def create_author(request):
+    if request.method == "POST":
+        form = forms.CreateAuthor(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/author')
+    else:
+        form = forms.CreateAuthor()
+
+    return render(request, template_name='refs/create_author.html', context={'form': form})
+
+
+def create_series(request):
+    if request.method == "POST":
+        form = forms.CreateSeries(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/series')
+    else:
+        form = forms.CreateSeries()
+
+    return render(request, template_name='refs/create_series.html', context={'form': form})
+
+
+def create_publishing_house(request):
+    if request.method == "POST":
+        form = forms.CreatePublishingHouse(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/publishing_house')
+    else:
+        form = forms.CreatePublishingHouse()
+
+    return render(request, template_name='refs/create_publishing_house.html', context={'form': form})
+
+
+def update_genre(request, pk_obj):
+    if request.method == "POST":
+        form = forms.UpdateGenre(data=request.POST)
+        if form.is_valid():
+            genre = form.cleaned_data.get('genre')
+            description = form.cleaned_data.get('description')
+            new_genre = models.Genre.objects.get(pk=pk_obj)
+            new_genre.genre = genre
+            new_genre.description = description
+            new_genre.save()
+            return HttpResponseRedirect('/genre')
+    else:
+        genre = models.Genre.objects.get(pk=pk_obj)
+        form = forms.UpdateGenre(data={'genre': genre.genre, 'description': genre.description})
+        return render(request, template_name='refs/update_genre.html', context={'form': form})
+
+
+def update_author(request, pk_obj):
+    if request.method == "POST":
+        form = forms.UpdateAuthor(data=request.POST)
+        if form.is_valid():
+            author = form.cleaned_data.get('author')
+            biography = form.cleaned_data.get('biography')
+            new_author = models.Author.objects.get(pk=pk_obj)
+            new_author.author = author
+            new_author.biography = biography
+            new_author.save()
+            return HttpResponseRedirect('/author')
+    else:
+        author = models.Author.objects.get(pk=pk_obj)
+        form = forms.UpdateAuthor(data={'author': author.author, 'biography': author.biography})
+        return render(request, template_name='refs/update_author.html', context={'form': form})
