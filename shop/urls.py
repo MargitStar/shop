@@ -22,7 +22,6 @@ from references import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', hello_world),
     path('genre/', views.genre_list_view),
     path('genre/<int:pk_obj>/', views.genre_view),
     path('author/', views.author_list_view),
@@ -30,10 +29,12 @@ urlpatterns = [
     path('publishing_house/', views.publishing_house_list_view),
     path('publishing_house/<int:pk_obj>/', views.publishing_house_view),
     path('series/', views.series_list_view),
-    path('series/<int:pk_obj>/', views.series_view)
-
+    path('series/<int:pk_obj>/', views.series_view),
+    path('genre/create/',views.create_genre),
+    path('', hello_world)
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
+

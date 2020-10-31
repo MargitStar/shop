@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from references import models
+from references import forms
+from django.http import HttpResponseRedirect
 
 
 # Create your views here.
@@ -42,3 +44,15 @@ def series_list_view(request):
 def series_view(request, pk_obj):
     context = {'series': models.Series.objects.get(pk=pk_obj)}
     return render(request, template_name='refs/series_view.html', context=context)
+
+
+def create_genre(request):
+    if request.method == "POST":
+        form = forms.CreateGenre(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/genre')
+    else:
+        form = forms.CreateGenre()
+
+    return render(request, template_name='refs/create_genre.html', context={'form': form})
