@@ -159,3 +159,43 @@ def update_publishing_house(request, pk_obj):
         house = models.PublishingHouse.objects.get(pk=pk_obj)
         form = forms.UpdatePublishingHouse(data={'house': house.house, 'history': house.history})
         return render(request, template_name='refs/update_publishing_house.html', context={'form': form})
+
+
+def delete_genre(request, pk_obj):
+    if request.method == "POST":
+        genre = models.Genre.objects.get(pk=pk_obj)
+        genre.delete()
+        return HttpResponseRedirect('/genre')
+    else:
+        genre = models.Genre.objects.get(pk=pk_obj)
+    return render(request, template_name='refs/delete_view.html', context={'genre': genre, 'header': genre.genre})
+
+
+def delete_author(request, pk_obj):
+    if request.method == "POST":
+        author = models.Author.objects.get(pk=pk_obj)
+        author.delete()
+        return HttpResponseRedirect('/author')
+    else:
+        author = models.Author.objects.get(pk=pk_obj)
+    return render(request, template_name='refs/delete_view.html', context={'author': author, 'header': author.author})
+
+
+def delete_series(request, pk_obj):
+    if request.method == "POST":
+        series = models.Series.objects.get(pk=pk_obj)
+        series.delete()
+        return HttpResponseRedirect('/series')
+    else:
+        series = models.Series.objects.get(pk=pk_obj)
+    return render(request, template_name='refs/delete_view.html', context={'series': series, 'header': series.title})
+
+
+def delete_publishing_house(request, pk_obj):
+    if request.method == "POST":
+        house = models.PublishingHouse.objects.get(pk=pk_obj)
+        house.delete()
+        return HttpResponseRedirect('/publishing_house')
+    else:
+        house = models.PublishingHouse.objects.get(pk=pk_obj)
+    return render(request, template_name='refs/delete_view.html', context={'house': house, 'header': house.house})

@@ -38,6 +38,10 @@ urlpatterns = [
     path('author/<int:pk_obj>/update', views.update_author),
     path('series/<int:pk_obj>/update', views.update_series),
     path('publishing_house/<int:pk_obj>/update', views.update_publishing_house),
+    path('genre/<int:pk_obj>/delete', views.delete_genre),
+    path('author/<int:pk_obj>/delete', views.delete_author),
+    path('series/<int:pk_obj>/delete', views.delete_series),
+    path('publishing_house/<int:pk_obj>/delete', views.delete_publishing_house),
     path('', hello_world)
 ]
 
