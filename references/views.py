@@ -103,7 +103,7 @@ def update_genre(request, pk_obj):
             new_genre.genre = genre
             new_genre.description = description
             new_genre.save()
-            return HttpResponseRedirect('/genre')
+            return HttpResponseRedirect(f'/genre/{pk_obj}')
     else:
         genre = models.Genre.objects.get(pk=pk_obj)
         form = forms.UpdateGenre(data={'genre': genre.genre, 'description': genre.description})
@@ -120,7 +120,7 @@ def update_author(request, pk_obj):
             new_author.author = author
             new_author.biography = biography
             new_author.save()
-            return HttpResponseRedirect('/author')
+            return HttpResponseRedirect(f'/author/{pk_obj}')
     else:
         author = models.Author.objects.get(pk=pk_obj)
         form = forms.UpdateAuthor(data={'author': author.author, 'biography': author.biography})
@@ -137,7 +137,7 @@ def update_series(request, pk_obj):
             new_title.title = title
             new_title.description = description
             new_title.save()
-            return HttpResponseRedirect('/series')
+            return HttpResponseRedirect(f'/series/{pk_obj}')
     else:
         title = models.Series.objects.get(pk=pk_obj)
         form = forms.UpdateSeries(data={'title': title.title, 'description': title.description})
@@ -154,7 +154,7 @@ def update_publishing_house(request, pk_obj):
             new_house.house = house
             new_house.history = history
             new_house.save()
-            return HttpResponseRedirect('/publishing_house')
+            return HttpResponseRedirect(f'/publishing_house/{pk_obj}')
     else:
         house = models.PublishingHouse.objects.get(pk=pk_obj)
         form = forms.UpdatePublishingHouse(data={'house': house.house, 'history': house.history})
