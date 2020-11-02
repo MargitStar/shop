@@ -11,10 +11,11 @@ class Book(models.Model):
         null=False
     )
 
-    # cover_photo = models.ImageField(
-    #     "Cover",
-    #     upload_to='media/'
-    # )
+    cover_photo = models.ImageField(
+        "Cover",
+        default='',
+        upload_to='media/'
+    )
 
     author = models.ManyToManyField(
         Author

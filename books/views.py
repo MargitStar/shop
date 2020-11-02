@@ -16,7 +16,7 @@ def book_view(request, pk_obj):
 
 def create_book(request):
     if request.method == 'POST':
-        form = forms.CreateBook(data=request.POST)
+        form = forms.CreateBook(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/book')
@@ -28,15 +28,16 @@ def create_book(request):
 
 def update_book(request, pk_obj):
     if request.method == "POST":
-        form = forms.UpdateBook(data=request.POST)
+        form = forms.UpdateBook(request.POST, request.FILES)
         if form.is_valid():
             name = form.cleaned_data.get('name')
+            cover_photo = form.cleaned_data.get('cover_photo')
             author = form.cleaned_data.get('author')
             genre = form.cleaned_data.get('genre')
             series = form.cleaned_data.get('series')
             publishing_house = form.cleaned_data.get('publishing_house')
             price = form.cleaned_data.get('price')
-            format = form.cleaned_data.get('format')
+            book_format = form.cleaned_data.get('format')
             isbn_code = form.cleaned_data.get('isbn_code')
             publishing_date = form.cleaned_data.get('publishing_date')
             pages_amount = form.cleaned_data.get('pages_amount')
@@ -49,12 +50,13 @@ def update_book(request, pk_obj):
 
             new_book = models.Book.objects.get(pk=pk_obj)
             new_book.name = name
+            new_book.cover_photo = cover_photo
             new_book.author.set(author)
             new_book.genre.set(genre)
             new_book.series = series
             new_book.publishing_house = publishing_house
             new_book.price = price
-            new_book.format = format
+            new_book.format = book_format
             new_book.isbn_code = isbn_code
             new_book.publishing_date = publishing_date
             new_book.pages_amount = pages_amount
