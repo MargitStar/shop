@@ -7,10 +7,16 @@
 <body>
 <h1>{{ book.name }}</h1>
 <b>Title</b> - {{ book.name }}<br>
-<b>Author</b> - {{ book.author.author|default:"No author"}}<br>
+<b>Author</b> -
+{% for author in book.author.all %}
+    {{ author }}
+{% endfor %}<br>
 <b>Series</b> - {{ book.series.title }}<br>
 <b>Publishing House</b> - {{ book.publishing_house.house }}<br>
-<b>Genre</b> - {{ book.genre.genre|default:"No genre" }}<br>
+<b>Genre</b> -
+{% for genre in book.genre.all %}
+    {{ genre }}
+{% endfor %}<br>
 <b>Price</b> - {{ book.price }}<br>
 <b>Format</b> - {{ book.format }}<br>
 <b>ISBN</b> - {{ book.isbn_code }}<br>
