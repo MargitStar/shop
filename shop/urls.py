@@ -19,11 +19,16 @@ from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
 from references import views
+from books.views import book_list_view, book_view, create_book, delete_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('genre/', views.genre_list_view),
     path('genre/<int:pk_obj>/', views.genre_view),
+    path('book/<int:pk_obj>/delete', delete_book),
+    path('book/create', create_book),
+    path('book/', book_list_view),
+    path('book/<int:pk_obj>/', book_view),
     path('author/', views.author_list_view),
     path('author/<int:pk_obj>/', views.author_view),
     path('publishing_house/', views.publishing_house_list_view),
