@@ -6,6 +6,11 @@
 </head>
 <body>
 <h1>{{ book.name }}</h1>
-{{ form.as_p }}
+<b>Title</b> - {{ book.name }}
+<b>Author</b> - {{book.author.author}}
+<b>Series</b> - {{ book.series.title }}
+<b>Publishing House</b> - {{ book.publishing_house.house }}
+<b>Genre</b> - {{ book.genre.genre }}
+<b>Price</b>> - {{ book.price }}
 </body>
 </html>
