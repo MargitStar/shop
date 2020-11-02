@@ -69,24 +69,7 @@ def update_book(request, pk_obj):
             return HttpResponseRedirect(f'/book/{pk_obj}')
     else:
         book = models.Book.objects.get(pk=pk_obj)
-        form = forms.UpdateBook(data={
-            'name': book.name,
-            'author': book.author,
-            'genre': book.genre,
-            'series': book.series,
-            'publishing_house': book.publishing_house,
-            'price': book.price,
-            'format': book.format,
-            'isbn_code': book.isbn_code,
-            'publishing_date': book.publishing_date,
-            'pages_amount': book.pages_amount,
-            'binding': book.binding,
-            'weight': book.weight,
-            'books_amount': book.books_amount,
-            'age_limit': book.age_limit,
-            'rating': book.rating,
-            'is_active': book.is_active
-        })
+        form = forms.UpdateBook(instance=book)
     return render(request, template_name='books/update_book.html', context={'form': form})
 
 
