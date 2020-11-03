@@ -1,6 +1,17 @@
 from django.shortcuts import render
 from books import forms, models
 from django.http import HttpResponseRedirect
+from django.views.generic import ListView, DetailView
+
+
+class BookListView(ListView):
+    template_name = 'books/book_list.html'
+    model = models.Book
+
+
+class BookView(DetailView):
+    template_name = 'books/book_view.html'
+    model = models.Book
 
 
 def book_list_view(request):

@@ -19,12 +19,12 @@ from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
 from references import views
-from books.views import book_list_view, book_view, create_book, delete_book, update_book
+from books.views import BookListView, BookView, create_book, delete_book, update_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('book/', book_list_view),
-    path('book/<int:pk_obj>/', book_view),
+    path('book/', BookListView.as_view()),
+    path('book/<int:pk>/', BookView.as_view()),
     path('book/create', create_book),
     path('book/<int:pk_obj>/update', update_book),
     path('book/<int:pk_obj>/delete', delete_book),
