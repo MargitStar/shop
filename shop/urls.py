@@ -19,7 +19,7 @@ from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
 from references import views
-from books.views import BookListView, BookView, create_book, delete_book, update_book
+from books.views import BookListView, BookView, create_book, DeleteBookView, update_book
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +27,7 @@ urlpatterns = [
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', create_book),
     path('book/<int:pk_obj>/update', update_book),
-    path('book/<int:pk_obj>/delete', delete_book),
+    path('book/<int:pk>/delete', DeleteBookView.as_view()),
     path('genre/', views.GenreListView.as_view()),
     path('genre/<int:pk>/', views.GenreView.as_view()),
     path('author/', views.AuthorListView.as_view()),
@@ -44,10 +44,10 @@ urlpatterns = [
     path('author/<int:pk_obj>/update', views.update_author),
     path('series/<int:pk_obj>/update', views.update_series),
     path('publishing_house/<int:pk_obj>/update', views.update_publishing_house),
-    path('genre/<int:pk_obj>/delete', views.delete_genre),
-    path('author/<int:pk_obj>/delete', views.delete_author),
-    path('series/<int:pk_obj>/delete', views.delete_series),
-    path('publishing_house/<int:pk_obj>/delete', views.delete_publishing_house),
+    path('genre/<int:pk>/delete', views.DeleteGenreView.as_view()),
+    path('author/<int:pk>/delete', views.DeleteAuthorView.as_view()),
+    path('series/<int:pk>/delete', views.DeleteSeriesView.as_view()),
+    path('publishing_house/<int:pk>/delete', views.DeletePublishingHouseView.as_view()),
     path('', hello_world)
 ]
 

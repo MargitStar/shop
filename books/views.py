@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from books import forms, models
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 
 
 class BookListView(ListView):
@@ -12,17 +12,6 @@ class BookListView(ListView):
 class BookView(DetailView):
     template_name = 'books/book_view.html'
     model = models.Book
-
-
-def book_list_view(request):
-    context = {'books': models.Book.objects.all()}
-    return render(request, template_name='books/book_list.html', context=context)
-
-
-def book_view(request, pk_obj):
-    book = models.Book.objects.get(pk=pk_obj)
-    context = {'book': book}
-    return render(request, template_name='books/book_view.html', context=context)
 
 
 def create_book(request):
@@ -86,11 +75,7 @@ def update_book(request, pk_obj):
     return render(request, template_name='books/update_book.html', context={'form': form})
 
 
-def delete_book(request, pk_obj):
-    if request.method == "POST":
-        book = models.Book.objects.get(pk=pk_obj)
-        book.delete()
-        return HttpResponseRedirect('/book')
-    else:
-        book = models.Book.objects.get(pk=pk_obj)
-    return render(request, template_name='refs/delete_view.html', context={'book': book, 'header': book.name})
+class DeleteBookView(DeleteView):
+    model = models.Book
+    template_name = 'refs/delete_view.html'
+    success_url = '/book'

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Delete {{ header}}</title>
+    <title>Delete {{ object }}</title>
 </head>
 <body>
-<h1>Delete "{{ header }}"?</h1>
+<h1>Delete "{{ object }}"?</h1>
 <form method="post">
     {% csrf_token %}
     {{form.as_p}}

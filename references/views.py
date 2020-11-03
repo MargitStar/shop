@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 
 from references import models
 from references import forms
@@ -163,41 +163,26 @@ def update_publishing_house(request, pk_obj):
         return render(request, template_name='refs/update_publishing_house.html', context={'form': form})
 
 
-def delete_genre(request, pk_obj):
-    if request.method == "POST":
-        genre = models.Genre.objects.get(pk=pk_obj)
-        genre.delete()
-        return HttpResponseRedirect('/genre')
-    else:
-        genre = models.Genre.objects.get(pk=pk_obj)
-    return render(request, template_name='refs/delete_view.html', context={'genre': genre, 'header': genre.genre})
+class DeleteGenreView(DeleteView):
+    model = models.Genre
+    template_name = 'refs/delete_view.html'
+    success_url = '/genre'
 
 
-def delete_author(request, pk_obj):
-    if request.method == "POST":
-        author = models.Author.objects.get(pk=pk_obj)
-        author.delete()
-        return HttpResponseRedirect('/author')
-    else:
-        author = models.Author.objects.get(pk=pk_obj)
-    return render(request, template_name='refs/delete_view.html', context={'author': author, 'header': author.author})
+class DeleteAuthorView(DeleteView):
+    model = models.Author
+    template_name = 'refs/delete_view.html'
+    success_url = '/author'
 
 
-def delete_series(request, pk_obj):
-    if request.method == "POST":
-        series = models.Series.objects.get(pk=pk_obj)
-        series.delete()
-        return HttpResponseRedirect('/series')
-    else:
-        series = models.Series.objects.get(pk=pk_obj)
-    return render(request, template_name='refs/delete_view.html', context={'series': series, 'header': series.title})
+class DeletePublishingHouseView(DeleteView):
+    model = models.PublishingHouse
+    template_name = 'refs/delete_view.html'
+    success_url = '/publishing_house'
 
 
-def delete_publishing_house(request, pk_obj):
-    if request.method == "POST":
-        house = models.PublishingHouse.objects.get(pk=pk_obj)
-        house.delete()
-        return HttpResponseRedirect('/publishing_house')
-    else:
-        house = models.PublishingHouse.objects.get(pk=pk_obj)
-    return render(request, template_name='refs/delete_view.html', context={'house': house, 'header': house.house})
+class DeleteSeriesView(DeleteView):
+    model = models.Series
+    template_name = 'refs/delete_view.html'
+    success_url = '/series'
+
