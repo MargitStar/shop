@@ -75,21 +75,32 @@ class CreateSeries(CreateView):
     success_url = '/series'
 
 
-def update_genre(request, pk_obj):
-    if request.method == "POST":
-        form = forms.UpdateGenre(data=request.POST)
-        if form.is_valid():
-            genre = form.cleaned_data.get('genre')
-            description = form.cleaned_data.get('description')
-            new_genre = models.Genre.objects.get(pk=pk_obj)
-            new_genre.genre = genre
-            new_genre.description = description
-            new_genre.save()
-            return HttpResponseRedirect(f'/genre/{pk_obj}')
-    else:
-        genre = models.Genre.objects.get(pk=pk_obj)
-        form = forms.UpdateGenre(data={'genre': genre.genre, 'description': genre.description})
-        return render(request, template_name='refs/update_genre.html', context={'form': form})
+class UpdateGenre(UpdateView):
+    template_name = 'refs/update_genre.html'
+    model = models.Genre
+    form_class = forms.UpdateGenre
+    success_url = '/genre'
+
+
+class UpdateAuthor(UpdateView):
+    template_name = 'refs/update_author.html'
+    model = models.Author
+    form_class = forms.UpdateAuthor
+    success_url = '/author'
+
+
+class UpdatePublishingHouse(UpdateView):
+    template_name = 'refs/update_publishing_house.html'
+    model = models.PublishingHouse
+    form_class = forms.UpdatePublishingHouse
+    success_url = '/publishing_house'
+
+
+class UpdateSeries(UpdateView):
+    template_name = 'refs/update_series.html'
+    model = models.Series
+    form_class = forms.UpdateSeries
+    success_url = '/series'
 
 
 def update_author(request, pk_obj):
@@ -165,4 +176,3 @@ class DeleteSeriesView(DeleteView):
     model = models.Series
     template_name = 'refs/delete_view.html'
     success_url = '/series'
-
