@@ -10,14 +10,14 @@
 <b>Cover</b> - {{ book.cover_photo}}<br>
 <b>Author</b> -
 {% for author in book.author.all %}
-    {{ author }}
-{% endfor %}<br>
+    {{ author }}<br>
+{% endfor %}
 <b>Series</b> - {{ book.series.title }}<br>
 <b>Publishing House</b> - {{ book.publishing_house.house }}<br>
 <b>Genre</b> -
 {% for genre in book.genre.all %}
-    {{ genre }}
-{% endfor %}<br>
+    {{ genre }}<br>
+{% endfor %}
 <b>Price</b> - {{ book.price }}<br>
 <b>Format</b> - {{ book.format }}<br>
 <b>ISBN</b> - {{ book.isbn_code }}<br>
