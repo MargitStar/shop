@@ -1,13 +1,29 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.views.generic import TemplateView, ListView
 
 from references import models
 from references import forms
-from django.http import HttpResponseRedirect
 
 
-def genre_list_view(request):
-    context = {'genres': models.Genre.objects.all()}
-    return render(request, template_name='refs/genre_list_view.html', context=context)
+class GenreListView(ListView):
+    template_name = 'refs/genre_list_view.html'
+    model = models.Genre
+
+
+class AuthorListView(ListView):
+    template_name = 'refs/author_list_view.html'
+    model = models.Author
+
+
+class PublishingHouseListView(ListView):
+    template_name = 'refs/publishing_house_list_view.html'
+    model = models.PublishingHouse
+
+
+class SeriesListView(ListView):
+    template_name = 'refs/series_list_view.html'
+    model = models.Series
 
 
 def genre_view(request, pk_obj):
@@ -15,9 +31,6 @@ def genre_view(request, pk_obj):
     return render(request, template_name='refs/genre_view.html', context=context)
 
 
-def author_list_view(request):
-    context = {'authors': models.Author.objects.all()}
-    return render(request, template_name='refs/author_list_view.html', context=context)
 
 
 def author_view(request, pk_obj):

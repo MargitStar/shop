@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Genre List</h1>
-{% for genre in genres %}
+{% for genre in object_list %}
     <b><a href="/genre/{{ genre.pk }}">{{ genre.genre }}</a></b><br>
 {% endfor %}
 </body>

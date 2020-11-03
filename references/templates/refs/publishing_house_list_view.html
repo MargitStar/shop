@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Publishing Houses</h1>
-{% for publishing_house in publishing_houses %}
+{% for publishing_house in object_list %}
     <b><a href="/publishing_house/{{ publishing_house.pk }}">{{ publishing_house.house}}</a></b><br>
 {% endfor %}
 </body>
