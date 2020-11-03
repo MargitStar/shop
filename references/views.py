@@ -31,26 +31,14 @@ def genre_view(request, pk_obj):
     return render(request, template_name='refs/genre_view.html', context=context)
 
 
-
-
 def author_view(request, pk_obj):
     context = {'author': models.Author.objects.get(pk=pk_obj)}
     return render(request, template_name='refs/author_view.html', context=context)
 
 
-def publishing_house_list_view(request):
-    context = {'publishing_houses': models.PublishingHouse.objects.all()}
-    return render(request, template_name='refs/publishing_house_list_view.html', context=context)
-
-
 def publishing_house_view(request, pk_obj):
     context = {'publishing_house': models.PublishingHouse.objects.get(pk=pk_obj)}
     return render(request, template_name='refs/publishing_house_view.html', context=context)
-
-
-def series_list_view(request):
-    context = {'series_list': models.Series.objects.all()}
-    return render(request, template_name='refs/series_list_view.html', context=context)
 
 
 def series_view(request, pk_obj):
