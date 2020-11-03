@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import TemplateView, ListView
+from django.views.generic import ListView, DetailView
 
 from references import models
 from references import forms
@@ -26,24 +26,25 @@ class SeriesListView(ListView):
     model = models.Series
 
 
-def genre_view(request, pk_obj):
-    context = {'genre': models.Genre.objects.get(pk=pk_obj)}
-    return render(request, template_name='refs/genre_view.html', context=context)
+class GenreView(DetailView):
+    template_name = 'refs/genre_view.html'
+    model = models.Genre
 
 
-def author_view(request, pk_obj):
-    context = {'author': models.Author.objects.get(pk=pk_obj)}
-    return render(request, template_name='refs/author_view.html', context=context)
+class AuthorView(DetailView):
+    template_name = 'refs/author_view.html'
+    model = models.Author
 
 
-def publishing_house_view(request, pk_obj):
-    context = {'publishing_house': models.PublishingHouse.objects.get(pk=pk_obj)}
-    return render(request, template_name='refs/publishing_house_view.html', context=context)
+# TODO: some fucking shit happens, don't know why FIX
+class PublishingHouseView(DetailView):
+    template_name = 'refs/publishing_house_view.html'
+    model = models.PublishingHouse
 
 
-def series_view(request, pk_obj):
-    context = {'series': models.Series.objects.get(pk=pk_obj)}
-    return render(request, template_name='refs/series_view.html', context=context)
+class SeriesView(DetailView):
+    template_name = 'refs/series_view.html'
+    model = models.Series
 
 
 def create_genre(request):
