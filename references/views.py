@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 
 from references import models
 from references import forms
@@ -47,52 +47,32 @@ class SeriesView(DetailView):
     model = models.Series
 
 
-def create_genre(request):
-    if request.method == "POST":
-        form = forms.CreateGenre(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/genre')
-    else:
-        form = forms.CreateGenre()
-
-    return render(request, template_name='refs/create_genre.html', context={'form': form})
+class CreateGenre(CreateView):
+    template_name = 'refs/create_genre.html'
+    model = models.Genre
+    form_class = forms.CreateGenre
+    success_url = '/genre'
 
 
-def create_author(request):
-    if request.method == "POST":
-        form = forms.CreateAuthor(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/author')
-    else:
-        form = forms.CreateAuthor()
-
-    return render(request, template_name='refs/create_author.html', context={'form': form})
+class CreateAuthor(CreateView):
+    template_name = 'refs/create_author.html'
+    model = models.Author
+    form_class = forms.CreateAuthor
+    success_url = '/author'
 
 
-def create_series(request):
-    if request.method == "POST":
-        form = forms.CreateSeries(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/series')
-    else:
-        form = forms.CreateSeries()
-
-    return render(request, template_name='refs/create_series.html', context={'form': form})
+class CreatePublishingHouse(CreateView):
+    template_name = 'refs/create_publishing_house.html'
+    model = models.PublishingHouse
+    form_class = forms.CreatePublishingHouse
+    success_url = '/publishing_house'
 
 
-def create_publishing_house(request):
-    if request.method == "POST":
-        form = forms.CreatePublishingHouse(data=request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/publishing_house')
-    else:
-        form = forms.CreatePublishingHouse()
-
-    return render(request, template_name='refs/create_publishing_house.html', context={'form': form})
+class CreateSeries(CreateView):
+    template_name = 'refs/create_series.html'
+    model = models.Series
+    form_class = forms.CreateSeries
+    success_url = '/series'
 
 
 def update_genre(request, pk_obj):
