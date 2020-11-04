@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from hello_world.views import hello_world
 from django.conf import settings
 from django.conf.urls.static import static
-from references import views
 from books.views import BookListView, BookView, CreateBook, DeleteBookView, UpdateBook
+
+from references import views
+from home_screen.views import TopBooksListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -48,7 +49,7 @@ urlpatterns = [
     path('author/<int:pk>/delete', views.DeleteAuthorView.as_view()),
     path('series/<int:pk>/delete', views.DeleteSeriesView.as_view()),
     path('publishing_house/<int:pk>/delete', views.DeletePublishingHouseView.as_view()),
-    path('', hello_world)
+    path('', TopBooksListView.as_view())
 ]
 
 if settings.DEBUG:

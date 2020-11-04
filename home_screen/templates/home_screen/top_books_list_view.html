@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Screen</title>
+</head>
+<body>
+<h1>Top Books</h1>
+{% for book in books %}
+    <b><a href="/book/{{ book.pk }}">{{ book.name }}</a></b><br>
+{% endfor %}
+</body>
+</html>
