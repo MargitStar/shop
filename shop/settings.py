@@ -32,14 +32,18 @@ MY_APPS = [
     'home_screen'
 ]
 
+THIRD_PARTY_APPS = [
+    'crispy_forms',
+]
+
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-] + MY_APPS
+                     'django.contrib.admin',
+                     'django.contrib.auth',
+                     'django.contrib.contenttypes',
+                     'django.contrib.sessions',
+                     'django.contrib.messages',
+                     'django.contrib.staticfiles',
+                 ] + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,3 +125,9 @@ MEDIA_URL = '/media/'
 
 STATIC_ROOT = my_local_settings.static_root
 MEDIA_ROOT = my_local_settings.media_root
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
