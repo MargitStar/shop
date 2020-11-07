@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from books import forms, models
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BookListView(ListView):
@@ -13,11 +14,12 @@ class BookView(DetailView):
     model = models.Book
 
 
-class CreateBook(CreateView):
+class CreateBook(LoginRequiredMixin, CreateView):
     template_name = 'books/create_book.html'
     model = models.Book
     form_class = forms.CreateBook
     success_url = '/book'
+    login_url = '/login'
 
 
 class UpdateBook(UpdateView):

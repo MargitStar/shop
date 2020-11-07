@@ -21,10 +21,12 @@ from books.views import BookListView, BookView, CreateBook, DeleteBookView, Upda
 
 from references import views
 from home_screen.views import TopBooksListView
+import auth_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', BookListView.as_view()),
+    path('login/', auth_view.MyLogInView.as_view(), name="login"),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),
     path('book/<int:pk>/update', UpdateBook.as_view()),
