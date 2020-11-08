@@ -29,7 +29,8 @@ ALLOWED_HOSTS = my_local_settings.allowed_hosts
 MY_APPS = [
     'references',
     'books',
-    'home_screen'
+    'home_screen',
+    'my_auth'
 ]
 
 THIRD_PARTY_APPS = [

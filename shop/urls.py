@@ -21,16 +21,16 @@ from books.views import BookListView, BookView, CreateBook, DeleteBookView, Upda
 
 from references import views
 from home_screen.views import TopBooksListView
-import auth_view
+from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, MyPasswordChangeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', BookListView.as_view()),
-    path('login/', auth_view.MyLogInView.as_view(), name="login"),
-    path('logout/', auth_view.MyLogOutView.as_view(), name='logout'),
-    path('password_change/', auth_view.MyPasswordChangeView.as_view(),
+    path('login/', MyLogInView.as_view(), name="login"),
+    path('logout/', MyLogOutView.as_view(), name='logout'),
+    path('password_change/', MyPasswordChangeView.as_view(),
          name='password_change'),
-    path('password_change_done/', auth_view.MyPasswordChangeDoneView.as_view(),
+    path('password_change_done/', MyPasswordChangeDoneView.as_view(),
          name='password_change_done'),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),
