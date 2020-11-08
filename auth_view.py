@@ -13,8 +13,8 @@ class MyLogOutView(LogoutView):
 
 class MyPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'registration/password_change.html'
-    success_url = '/'
+    success_url = '/password_change_done'
 
 
-# class MyPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
-#     pass
+class MyPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
+    template_name = 'registration/password_change_done.html'
