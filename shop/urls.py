@@ -21,7 +21,7 @@ from books.views import BookListView, BookView, CreateBook, DeleteBookView, Upda
 
 from references import views
 from home_screen.views import TopBooksListView
-from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, MyPasswordChangeView
+from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, MyPasswordChangeView, SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +32,7 @@ urlpatterns = [
          name='password_change'),
     path('password_change_done/', MyPasswordChangeDoneView.as_view(),
          name='password_change_done'),
+    path('signup/', SignUpView.as_view(), name='signup'),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),
     path('book/<int:pk>/update', UpdateBook.as_view()),
