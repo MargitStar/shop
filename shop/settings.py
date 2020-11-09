@@ -30,11 +30,14 @@ MY_APPS = [
     'references',
     'books',
     'home_screen',
-    'my_auth'
+    'my_auth',
+    'my_profile'
 ]
 
 THIRD_PARTY_APPS = [
     'crispy_forms',
+    'phonenumber_field',
+    'django_countries'
 ]
 
 INSTALLED_APPS = [
@@ -61,8 +64,7 @@ ROOT_URLCONF = 'shop.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
