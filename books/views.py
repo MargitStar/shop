@@ -5,6 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class BookListView(ListView):
+    paginate_by = 2
     template_name = 'books/book_list.html'
     model = models.Book
 

@@ -26,7 +26,7 @@ from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, M
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', BookListView.as_view()),
-    path('login/', MyLogInView.as_view(), name="login"),
+    path('signin/', MyLogInView.as_view(), name="login"),
     path('logout/', MyLogOutView.as_view(), name='logout'),
     path('password_change/', MyPasswordChangeView.as_view(),
          name='password_change'),

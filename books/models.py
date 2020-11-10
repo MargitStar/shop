@@ -46,9 +46,9 @@ class Book(models.Model):
         null=False
     )
 
-    FORMAT_CHOICES = (('1', '84×108/16'), ('2', '70×90/8'), ('3', '70×90/16'),
-                      ('4', '75×90/16'), ('5', '60×90/16'), ('6', '84×108/32'),
-                      ('7', '70×90/32'), ('8', '70×108/32'), ('9', '60×90/32'))
+    FORMAT_CHOICES = (('84×108/16', '84×108/16'), ('70×90/8', '70×90/8'), ('70×90/16', '70×90/16'),
+                      ('75×90/16', '75×90/16'), ('60×90/16', '60×90/16'), ('84×108/32', '84×108/32'),
+                      ('70×90/32', '70×90/32'), ('70×108/32', '70×108/32'), ('60×90/32', '60×90/32'))
     format = models.CharField(
         "Format",
         max_length=15,
@@ -102,9 +102,9 @@ class Book(models.Model):
         null=False
     )
 
-    AGE_LIMIT_CHOICES = (('1', '18+'), ('2', '16+'), ('3', '14+'),
-                         ('4', '12+'), ('5', '10+'), ('6', '8+'),
-                         ('7', '6+'), ('8', '3+'), ('6', '0+'))
+    AGE_LIMIT_CHOICES = (('18+', '18+'), ('16+', '16+'), ('14+', '14+'),
+                         ('12+', '12+'), ('10+', '10+'), ('8+', '8+'),
+                         ('6+', '6+'), ('3+', '3+'), ('0+', '0+'))
     age_limit = models.CharField(
         "Age limit",
         max_length=4,
@@ -126,10 +126,11 @@ class Book(models.Model):
         null=False
     )
 
-    BOOL_CHOICES = ((True, 'Yes'), (False, 'No'))
-    is_active = models.BooleanField(
+    BOOL_CHOICES = (('Yes', 'Yes'), ('No', 'No'))
+    is_active = models.CharField(
         "Is active?",
         choices=BOOL_CHOICES,
+        max_length=3,
         default=True,
         blank=False,
         null=False
