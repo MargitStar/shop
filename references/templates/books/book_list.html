@@ -9,25 +9,41 @@
     <h1>Books</h1>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li class="page-item">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
                     <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                         <span class="sr-only">Previous</span>
                     </a>
-                </li>
-            {% endif %}
-                {% for page_obj in page_obj.paginator %}
-                    <li class="page-item"><a class="page-link"
-                                             href="?page={{ page_obj.number }}">{{ page_obj.number }}</a>
+                {% endif %}
+            </li>
+
+{#            <li class="page-item active">#}
+{#      <span class="page-link">#}
+{#          {{ page_obj.number }}#}
+{#        <span class="sr-only">(current)</span>#}
+{#      </span>#}
+{#            </li>#}
+            {% for page in page_obj.paginator %}
+                {% if page.number == page_obj.number %}
+                    <li class="page-item active">
+                        <span class="page-link">
+                        {{ page_obj.number }}
+                        <span class="sr-only">(current)</span>
+                        </span>
                     </li>
-                {% endfor %}
-            {% if page_obj.has_next %}
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            {% endif %}
+                {% else %}
+                    <a class="page-link" href="?page={{ page.number }}">{{ page.number }}</a>
+                {% endif %}
+            {% endfor %}
+
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                {% endif %}
             </li>
         </ul>
     </nav>
