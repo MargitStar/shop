@@ -9,21 +9,25 @@ from references import forms
 class GenreListView(ListView):
     template_name = 'refs/genre_list_view.html'
     model = models.Genre
+    paginate_by = 10
 
 
 class AuthorListView(ListView):
     template_name = 'refs/author_list_view.html'
     model = models.Author
+    paginate_by = 10
 
 
 class PublishingHouseListView(ListView):
     template_name = 'refs/publishing_house_list_view.html'
     model = models.PublishingHouse
+    paginate_by = 10
 
 
 class SeriesListView(ListView):
     template_name = 'refs/series_list_view.html'
     model = models.Series
+    paginate_by = 10
 
 
 class GenreView(DetailView):
@@ -36,7 +40,6 @@ class AuthorView(DetailView):
     model = models.Author
 
 
-# TODO: some fucking shit happens, don't know why FIX
 class PublishingHouseView(DetailView):
     template_name = 'refs/publishing_house_view.html'
     model = models.PublishingHouse
