@@ -31,7 +31,8 @@ MY_APPS = [
     'books',
     'home_screen',
     'my_auth',
-    'my_profile'
+    'my_profile',
+    'cart'
 ]
 
 THIRD_PARTY_APPS = [
