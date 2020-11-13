@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from books.views import BookListView, BookView, CreateBook, DeleteBookView, UpdateBook
@@ -22,6 +22,8 @@ from books.views import BookListView, BookView, CreateBook, DeleteBookView, Upda
 from references import views
 from home_screen.views import TopBooksListView
 from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, MyPasswordChangeView, SignUpView
+from cart import urls
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -32,6 +34,7 @@ urlpatterns = [
          name='password_change'),
     path('password_change_done/', MyPasswordChangeDoneView.as_view(),
          name='password_change_done'),
+    path('cart/', include('cart.urls', namespace='cart')),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),
