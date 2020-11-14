@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from books.models import Book
 
 User = get_user_model()
 
@@ -30,7 +31,7 @@ class Cart(models.Model):
 
 class BookInCart(models.Model):
     cart = models.ForeignKey(
-        "Cart",
+        Cart,
         on_delete=models.CASCADE,
         related_name='books'
     )

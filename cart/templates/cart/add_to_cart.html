@@ -1,0 +1,9 @@
+{% extends 'customer_base.html' %}
+{% load crispy_forms_filters %}
+{% block body %}
+    <form method="get" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-secondary">Create</button>
+    </form>
+{% endblock body %}

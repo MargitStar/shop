@@ -4,5 +4,19 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>Cart</h1>
+    {% if user is None %}
+        Guest
+    {% else %}
+        <h4>{{ user.username|title }}</h4>
+        {{ book.name }}
+    {% endif %}
+    {% for book in cart.books.all %}
+        <div class="media">
+            <img src="{{ book.cover_photo.url }}" class="mr-3" alt="...">
+            <div class="media-body">
+                <h5 class="mt-0">{{ book.name|title }}</h5>
+            </div>
+        </div>
+    {% endfor %}
+
 {% endblock body %}
