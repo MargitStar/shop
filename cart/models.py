@@ -26,3 +26,22 @@ class Cart(models.Model):
         null=True,
         blank=True
     )
+
+
+class BookInCart(models.Model):
+    cart = models.ForeignKey(
+        "Cart",
+        on_delete=models.CASCADE,
+        related_name='books'
+    )
+
+    quantity = models.IntegerField(
+        'Quantity',
+        default=1
+    )
+
+    price = models.DecimalField(
+        'Price',
+        max_digits=10,
+        decimal_places=2,
+    )
