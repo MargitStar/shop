@@ -35,6 +35,7 @@ urlpatterns = [
     path('password_change_done/', MyPasswordChangeDoneView.as_view(),
          name='password_change_done'),
     path('cart/', include('cart.urls', namespace='cart')),
+    path('profile/', include('my_profile.urls', namespace='profile')),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),

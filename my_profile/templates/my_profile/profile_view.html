@@ -1,0 +1,43 @@
+{% extends 'customer_base.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}
+    <title>{{ user.username }}'s Profile</title>
+{% endblock title %}
+
+{% block body %}
+    <h1>{{ user.username|title}}'s Profile</h1>
+    <table class="table table-striped table-dark">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Username</td>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>First Name</td>
+            <td>{{ user.first_name }}</td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>Last Name</td>
+            <td>{{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td>Last Name</td>
+            <td>{{ user.email }}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock body %}
+
+

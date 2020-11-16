@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect
 
 class MyLogInView(LoginView):
     template_name = 'registration/log_in.html'
-    success_url = '/'
+    success_url = 'profile/'
 
 
 class MyLogOutView(LogoutView):
