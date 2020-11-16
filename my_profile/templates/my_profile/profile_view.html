@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block body %}
-    <h1>{{ user.username|title}}'s Profile</h1>
+    <h1>{{ user.username|title }}'s Profile</h1>
     <table class="table table-striped table-dark">
         <thead>
         <tr>
@@ -33,19 +33,54 @@
         </tr>
         <tr>
             <th scope="row">4</th>
-            <td>Last Name</td>
+            <td>Email</td>
             <td>{{ user.prof_user.email }}</td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td>Phone Number</td>
+            <td>{{ user.prof_user.phone_number }}</td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td>Country</td>
+            <td>{{ user.prof_user.country.name }}</td>
+        </tr>
+        <tr>
+            <th scope="row">7</th>
+            <td>City</td>
+            <td>{{ user.prof_user.city }}</td>
+        </tr>
+        <tr>
+            <th scope="row">8</th>
+            <td>Address 1</td>
+            <td>{{ user.prof_user.address1 }}</td>
+        </tr>
+        <tr>
+            <th scope="row">9</th>
+            <td>Address 2</td>
+            <td>{{ user.prof_user.address2 }}</td>
+        </tr>
+         <tr>
+            <th scope="row">10</th>
+            <td>Zip Code</td>
+            <td>{{ user.prof_user.zip_code }}</td>
+        </tr>
+         <tr>
+            <th scope="row">11</th>
+            <td>Additional Info</td>
+            <td>{{ user.prof_user.additional_info }}</td>
         </tr>
         </tbody>
     </table>
     <a href="{% url 'profile:profile_update' user.prof_user.pk %}" class="btn btn-secondary">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
-                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                            <path fill-rule="evenodd"
-                                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                        </svg>
-                    </a>
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square"
+             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+            <path fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+        </svg>
+    </a>
 {% endblock body %}
 
 
