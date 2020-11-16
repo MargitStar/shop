@@ -3,5 +3,6 @@ from . import views
 
 app_name = 'profile'
 urlpatterns = [
-    path('<int:pk>/', views.ProfileView.as_view(), name='profile_view'),
+    path('', views.ProfileView.as_view(), name='profile_view'),
+    path('<int:pk>/update/', views.UpdateProfileView.as_view(), name='profile_update'),
 ]
