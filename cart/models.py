@@ -36,6 +36,13 @@ class BookInCart(models.Model):
         related_name='books'
     )
 
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.PROTECT,
+        related_name='book_in_cart',
+        default=1
+    )
+
     quantity = models.IntegerField(
         'Quantity',
         default=1
@@ -46,3 +53,9 @@ class BookInCart(models.Model):
         max_digits=10,
         decimal_places=2,
     )
+
+    # def book_total_price(self):
+    #     return self.quantity * Book.price
+
+    def __str__(self):
+        return f"{self.book} in the cart for {self.cart.customer.username}"
