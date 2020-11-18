@@ -28,6 +28,12 @@ class Cart(models.Model):
         blank=True
     )
 
+    def total_price(self):
+        price = 0
+        for book in self.books.all():
+            price += book.price
+        return price
+
 
 class BookInCart(models.Model):
     cart = models.ForeignKey(
@@ -54,8 +60,8 @@ class BookInCart(models.Model):
         decimal_places=2,
     )
 
-    # def book_total_price(self):
-    #     return self.quantity * Book.price
+    def book_total_price(self):
+        return self.quantity * self.book.price
 
     def __str__(self):
         return f"{self.book} in the cart for {self.cart.customer.username}"

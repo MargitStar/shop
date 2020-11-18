@@ -67,6 +67,7 @@ class AddBookToCart(TemplateView):
 
             if not created:
                 book_in_cart.quantity += 1
+                book_in_cart.price = book_in_cart.book_total_price()
                 book_in_cart.save()
 
         context['cart'] = cart
