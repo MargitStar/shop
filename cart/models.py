@@ -64,4 +64,4 @@ class BookInCart(models.Model):
         return self.quantity * self.book.price
 
     def __str__(self):
-        return f"{self.book} in the cart for {self.cart.customer.username}"
+        return f"{self.book} in the cart for {self.cart.customer}"
