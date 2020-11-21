@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, DeleteView
+from django.urls import reverse_lazy
 from . import models
 from books import models as book_models
 
@@ -10,7 +11,6 @@ class CartView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_id = self.request.session.get('cart_id')
-        print(cart_id)
         user = self.request.user
         if not isinstance(user, models.User):
             user = None
@@ -24,7 +24,8 @@ class CartView(TemplateView):
             cart = models.Cart.objects.create(customer=user)
             self.request.session['cart_id'] = cart.pk
 
-        book = models.BookInCart.objects.all()
+        book_id = self.request.GET.get('book')
+        book = book_models.Book.objects.filter(pk=book_id).first()
 
         context['cart'] = cart
         context['book'] = book
@@ -37,7 +38,6 @@ class AddBookToCart(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         cart_id = self.request.session.get('cart_id')
-        print(cart_id)
         user = self.request.user
         if not isinstance(user, models.User):
             user = None
@@ -50,9 +50,8 @@ class AddBookToCart(TemplateView):
         else:
             cart = models.Cart.objects.create(customer=user)
             self.request.session['cart_id'] = cart.pk
-            print(self.request.session.items())
 
-        book_id = int(self.request.GET.get('book'))
+        book_id = self.request.GET.get('book')
         book = book_models.Book.objects.filter(pk=book_id).first()
 
         if book:
@@ -74,3 +73,9 @@ class AddBookToCart(TemplateView):
         context['book'] = book
 
         return context
+
+
+class BookInCartDelete(DeleteView):
+    template_name = 'refs/delete_view.html'
+    model = models.BookInCart
+    success_url = reverse_lazy('cart:cart_update')
