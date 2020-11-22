@@ -4,7 +4,7 @@
 {% endblock title %}
 
 {% block body %}
-    {% if not User %}
+    {% if not user %}
         <h4>Guest</h4>
     {% else %}
         <h4>{{ user.username|title }}</h4>
