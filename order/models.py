@@ -6,7 +6,7 @@ from cart.models import Cart
 class Order(models.Model):
     cart = models.OneToOneField(
         Cart,
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
     )
 
     status1 = models.BooleanField(
