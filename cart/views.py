@@ -6,7 +6,7 @@ from books import models as book_models
 
 
 class CartView(TemplateView):
-    template_name = 'cart/cart.html'
+    template_name = 'cart/add_to_cart.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -16,7 +16,7 @@ class CartView(TemplateView):
             user = None
 
         if cart_id:
-            cart = models.Cart.objects.filter(pk=cart_id)
+            cart = models.Cart.objects.filter(pk=cart_id).first()
             if not cart:
                 cart = models.Cart.objects.create(customer=user)
                 self.request.session['cart_id'] = cart.pk
@@ -24,11 +24,7 @@ class CartView(TemplateView):
             cart = models.Cart.objects.create(customer=user)
             self.request.session['cart_id'] = cart.pk
 
-        book_id = self.request.GET.get('book')
-        book = book_models.Book.objects.filter(pk=book_id).first()
-
         context['cart'] = cart
-        context['book'] = book
         return context
 
 
