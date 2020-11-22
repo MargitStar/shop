@@ -21,7 +21,6 @@
         </tr>
         </thead>
         <tbody>
-        {{ cart.pk }}
         {% for book_in_cart in cart.books.all %}
             <tr>
                 <td><img src="{{ book_in_cart.book.cover_photo.url }}" class="mr-3" alt="..." width="64" height="64"></td>
