@@ -24,7 +24,6 @@ from home_screen.views import TopBooksListView
 from my_auth.views import MyLogInView, MyLogOutView, MyPasswordChangeDoneView, MyPasswordChangeView, SignUpView
 from cart import urls
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', BookListView.as_view()),
@@ -36,6 +35,7 @@ urlpatterns = [
          name='password_change_done'),
     path('cart/', include('cart.urls', namespace='cart')),
     path('profile/', include('my_profile.urls', namespace='profile')),
+    path('order/', include('order.urls', namespace='order')),
     path('signup/', SignUpView.as_view(), name='signup'),
     path('book/<int:pk>/', BookView.as_view()),
     path('book/create', CreateBook.as_view()),
