@@ -17,15 +17,10 @@ class CreateOrder(SuccessMessageMixin, UpdateView):
     fields = ('delivery_address', 'contact_phone', 'comment')
     login_url = '/login'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+
+    def get_object(self, queryset=None):
         user = self.request.user
         user_profile = Profile.objects.get(user=user)
-
-        if user_profile.address1:
-            delivery_address = user_profile.address1
-        if user_profile.phone_number:
-            contact_phone = user_profile.phone_number
 
         cart_id = self.request.session.get('cart_id')
         cart = Cart.objects.get(pk=cart_id)
@@ -40,8 +35,13 @@ class CreateOrder(SuccessMessageMixin, UpdateView):
             order = Order.objects.create(cart=cart)
             self.request.session['order_id'] = order.pk
 
-        context['order'] = order
-        return context
+        if user_profile.address1:
+            order.delivery_address = user_profile.address1
+        if user_profile.phone_number:
+            order.contact_phone = user_profile.phone_number
+            order.save()
+
+        return order
 
     def get_success_url(self):
         cart_pk = self.request.session['cart_pk']
