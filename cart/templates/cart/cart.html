@@ -41,5 +41,6 @@
     </table>
 
     <h6>Total price: {{ cart.total_price }}</h6>
+    <a href='{% url 'order:create_order'%}' class="btn btn-secondary" type="submit">Order</a>
 
 {% endblock body %}
