@@ -9,6 +9,24 @@ class ProfileView(TemplateView):
     model = models.Profile
     template_name = 'my_profile/profile_view.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        user = self.request.user
+        profile = models.Profile.objects.filter(user=user).first()
+
+        if user.first_name:
+            profile.first_name = user.first_name
+
+        if user.last_name:
+            profile.last_name = user.last_name
+
+        profile.email = user.email
+
+        profile.save()
+
+        context['profile'] = profile
+        return context
+
 
 class UpdateProfileView(UpdateView):
     model = models.Profile
