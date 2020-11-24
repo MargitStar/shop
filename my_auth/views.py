@@ -4,11 +4,11 @@ from .forms import UserRegisterForm
 from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 
 
 class MyLogInView(LoginView):
     template_name = 'registration/log_in.html'
-    success_url = 'profile/'
 
 
 class MyLogOutView(LogoutView):
@@ -26,7 +26,7 @@ class MyPasswordChangeDoneView(LoginRequiredMixin, PasswordChangeDoneView):
 
 class SignUpView(CreateView):
     template_name = 'registration/sign-up.html'
-    success_url = '/'
+    success_url = reverse_lazy('profile:profile_update')
     form_class = UserRegisterForm
     success_message = "Your profile was created successfully"
 
@@ -36,5 +36,4 @@ class SignUpView(CreateView):
         password = self.request.POST['password1']
         user = authenticate(username=username, password=password)
         login(self.request, user)
-        return HttpResponseRedirect('/')
-
+        return HttpResponseRedirect(reverse_lazy('profile:profile_view'))
