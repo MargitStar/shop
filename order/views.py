@@ -53,6 +53,7 @@ class CreateOrder(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             order.delivery_address = user_profile.address1
         if user_profile.phone_number:
             order.contact_phone = user_profile.phone_number
+            order.save()
         del self.request.session['cart_id']
         return order
 
