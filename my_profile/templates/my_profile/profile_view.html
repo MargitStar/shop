@@ -61,12 +61,12 @@
             <td>Address 2</td>
             <td>{{ user.prof_user.address2 }}</td>
         </tr>
-         <tr>
+        <tr>
             <th scope="row">10</th>
             <td>Zip Code</td>
             <td>{{ user.prof_user.zip_code }}</td>
         </tr>
-         <tr>
+        <tr>
             <th scope="row">11</th>
             <td>Additional Info</td>
             <td>{{ user.prof_user.additional_info }}</td>
@@ -80,7 +80,15 @@
             <path fill-rule="evenodd"
                   d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
         </svg>
-    </a>
+    </a><br>
+    {% for foo in profile.user.templates.all %}
+{{ foo.order.id }}
+        {% if foo.order %}
+            {% for book in foo.books.all %}
+                {{ book.book.name }} {{ book.quantity}} {{ book.price }}<br>
+            {% endfor %}<br>
+        {% endif %}
+    {% endfor %}
 {% endblock body %}
 
 

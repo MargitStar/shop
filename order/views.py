@@ -11,12 +11,11 @@ from cart.models import Cart, BookInCart
 from books.models import Book
 
 
-class CreateOrder(SuccessMessageMixin, UpdateView):
+class CreateOrder(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = 'order/create_order.html'
     model = Order
     fields = ('delivery_address', 'contact_phone', 'comment')
-    login_url = '/login'
-
+    login_url = reverse_lazy('login')
 
     def get_object(self, queryset=None):
         user = self.request.user
@@ -26,31 +25,10 @@ class CreateOrder(SuccessMessageMixin, UpdateView):
         cart = Cart.objects.get(pk=cart_id)
         order_id = self.request.session.get('order_id')
 
-        if order_id:
-            order = Order.objects.filter(pk=order_id).first()
-            if not order:
-                order = Order.objects.create(cart=cart)
-                self.request.session['order_id'] = order.pk
-        else:
-            order = Order.objects.create(cart=cart)
-            self.request.session['order_id'] = order.pk
-
-        if user_profile.address1:
-            order.delivery_address = user_profile.address1
-        if user_profile.phone_number:
-            order.contact_phone = user_profile.phone_number
-            order.save()
-
-        return order
-
-    def get_success_url(self):
-        cart_pk = self.request.session['cart_pk']
-        del self.request.session['cart_pk']
-
-        book_in_cart = BookInCart.objects.all().filter(cart=cart_pk)
+        book_in_cart = BookInCart.objects.all().filter(cart_id=cart_id)
 
         for book in book_in_cart:
-            cur_book = Book.objects.filter(pk=book.books.pk).last()
+            cur_book = Book.objects.filter(pk=book.book.pk).last()
 
             new_count = cur_book.books_amount - book.quantity
             if new_count >= 0:
@@ -64,10 +42,22 @@ class CreateOrder(SuccessMessageMixin, UpdateView):
                 cur_book.is_active = False
                 cur_book.save()
 
-        order_id = self.object.pk
-        order = Order.objects.filter(pk=order_id).first()
-        order.user = self.request.user
+        book_in_cart_new = BookInCart.objects.all().filter(cart=cart_id)
+        if len(book_in_cart_new) == 0:
+            return None
 
+        order = Order.objects.create(cart=cart)
+        self.request.session['order_id'] = order.pk
+
+        if user_profile.address1:
+            order.delivery_address = user_profile.address1
+        if user_profile.phone_number:
+            order.contact_phone = user_profile.phone_number
+        del self.request.session['cart_id']
+        return order
+
+    def get_success_url(self):
+        del self.request.session['order_id']
         return reverse_lazy('profile:profile_view')
 
     def get_success_message(self, cleaned_data):
