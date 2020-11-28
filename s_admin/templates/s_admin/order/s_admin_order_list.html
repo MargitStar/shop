@@ -1,0 +1,76 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Order List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+{% block nav_orders %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 's_admin:s_admin_order_list' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-file">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                <polyline points="13 2 13 9 20 9"></polyline>
+            </svg>
+            Orders
+        </a>
+    </li>
+{% endblock nav_orders %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Status</th>
+            <th>Order</th>
+            <th>Customer</th>
+            <th>Delivery Address</th>
+            <th>Phone Number</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Price</th>
+            <th>Books</th>
+        </tr>
+        {% for order in object_list %}
+            <tr>
+
+                {% if order.status2 == 'The order is being delivered' %}
+                    <td><a class="btn btn-info" href="">{{ order.status2 }}</a></td>
+                {% elif order.status2 == 'The order is being processed' %}
+                    <td><a class="btn btn-primary" href="">{{ order.status2 }}</a></td>
+                {% elif order.status2 == 'The order was canceled' %}
+                    <td><a class="btn btn-danger" href="">{{ order.status2 }}</a>
+                    </td>
+                {% elif order.status2 == 'The order is completed' %}
+                    <td><a class="btn btn-success" href="">{{ order.status2 }}</a>
+                    </td>
+                {% endif %}
+
+
+                <td><a href="">{{ order.pk }}</a></td>
+                {% if order.cart.customer.pk %}
+                    <td>
+                        <a href="">{{ order.cart.customer.username }}</a>
+                    </td>
+                {% else %}
+                    <td>Guest</td>
+                {% endif %}
+
+                <td>{{ order.delivery_address }}</td>
+                <td>{{ order.contact_phone }}</td>
+                <td>{{ order.created_date }}</td>
+                <td>{{ order.updated_date }}</td>
+                <td>
+                    {{ order.cart.total_price }} BYN
+                </td>
+                <td>
+                    {% for books in order.cart.books.all %}
+                        <a href="">{{ books.book }}</a> <br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
