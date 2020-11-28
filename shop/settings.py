@@ -34,7 +34,8 @@ MY_APPS = [
     'my_auth',
     'my_profile',
     'cart',
-    'order'
+    'order',
+    's_admin'
 ]
 
 THIRD_PARTY_APPS = [
