@@ -233,3 +233,63 @@ class SAdminAuthorView(LoginRequiredMixin, DetailView):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
+
+
+class SAdminPublishingHouseList(LoginRequiredMixin, ListView):
+    model = ref_models.PublishingHouse
+    template_name = 's_admin/publishing_house/s_admin_publishing_house_list.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminPublishingHouseView(LoginRequiredMixin, DetailView):
+    model = ref_models.PublishingHouse
+    template_name = 's_admin/publishing_house/s_admin_publishing_house_view.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminPublishingHouseCreate(LoginRequiredMixin, CreateView):
+    model = ref_models.PublishingHouse
+    fields = '__all__'
+    success_url = reverse_lazy('s_admin:s_admin_publishing_house_list')
+    template_name = 's_admin/publishing_house/s_admin_publishing_house_create.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminPublishingHouseUpdate(LoginRequiredMixin, UpdateView):
+    model = ref_models.PublishingHouse
+    fields = '__all__'
+    success_url = reverse_lazy('s_admin:s_admin_publishing_house_list')
+    template_name = 's_admin/publishing_house/s_admin_publishing_house_update.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminPublishingHouseDelete(LoginRequiredMixin, DeleteView):
+    model = ref_models.PublishingHouse
+    success_url = reverse_lazy('s_admin:s_admin_publishing_house_list')
+    template_name = 's_admin/publishing_house/s_admin_publishing_house_delete.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
