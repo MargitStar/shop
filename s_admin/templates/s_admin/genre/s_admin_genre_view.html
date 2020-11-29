@@ -1,0 +1,27 @@
+{% extends "s_admin_base.html" %}
+{% block title %}<title>Детальный обзор Книги {{ object.name }}</title>{% endblock title %}
+
+{% block main %}
+    <body>
+    <h1>Genre: {{ object.genre }}</h1>
+
+    <div class="card mb-10" style="max-width: 1850px;">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">Genre name: <b>{{ object.genre }}</b></li>
+                        <li class="list-group-item">Description: <b>{{ object.description }}</b></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_genre_list' %}">Back </a>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+{% endblock main %}
