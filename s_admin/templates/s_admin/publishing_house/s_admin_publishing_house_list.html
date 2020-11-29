@@ -1,0 +1,32 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Publishing House List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_publishing_house_create' %}">Create</a>
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Name</th>
+            <th>History</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for publishing_house in object_list %}
+            <tr>
+                <td>{{ publishing_house.house }}</td>
+                <td>{{ publishing_house.history }}</td>
+                <td><a class="btn badge-info"
+                       href="{% url 's_admin:s_admin_publishing_house_view' publishing_house.pk %}">View</a></td>
+                <td><a class="btn badge-info"
+                       href="{% url 's_admin:s_admin_publishing_house_update' publishing_house.pk %}">Update</a></td>
+                <td><a class="btn badge-danger" href="{% url 's_admin:s_admin_publishing_house_delete' publishing_house.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
