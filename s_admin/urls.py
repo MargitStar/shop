@@ -10,4 +10,7 @@ urlpatterns = [
 
     path('genre/list/', views.SAdminGenreList.as_view(), name='s_admin_genre_list'),
     path('genre/create/', views.SAdminGenreCreate.as_view(), name='s_admin_genre_create'),
+    path('genre/view/<int:pk>/', views.SAdminGenreView.as_view(), name='s_admin_genre_view'),
+    path('genre/update/<int:pk>/', views.SAdminGenreUpdate.as_view(), name='s_admin_genre_update'),
+    path('genre/delete/<int:pk>/', views.SAdminGenreDelete.as_view(), name='s_admin_genre_delete'),
 ]
