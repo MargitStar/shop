@@ -1,0 +1,12 @@
+{% extends "s_admin_base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}<title>Delete Series {{ object.title }} ???</title>{% endblock title %}
+
+{% block main %}
+    <body>
+    <h1>Delete Series {{ series.title }} ?</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-secondary">Delete</button>
+    </form>
+{% endblock main %}
