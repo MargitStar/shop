@@ -1,0 +1,30 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Author List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_author_create' %}">Create</a>
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Author</th>
+            <th>Biography</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for author in object_list %}
+            <tr>
+                <td>{{ author.author }}</td>
+                <td>{{ author.biography }}</td>
+                 <td><a class="btn badge-info" href="{% url 's_admin:s_admin_author_view' author.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_author_update' author.pk %}">Update</a></td>
+                <td><a class="btn badge-danger" href="{% url 's_admin:s_admin_author_delete' author.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
