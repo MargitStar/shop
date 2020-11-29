@@ -28,13 +28,13 @@ class Book(models.Model):
     series = models.ForeignKey(
         Series,
         default=1,
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
     )
 
     publishing_house = models.ForeignKey(
         PublishingHouse,
         default=1,
-        on_delete=models.PROTECT
+        on_delete=models.CASCADE
     )
 
     price = models.DecimalField(
