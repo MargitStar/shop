@@ -1,0 +1,52 @@
+{% extends "s_admin_base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}<title>Update {{ object.pk }}</title>{% endblock title %}
+
+{% block nav_orders %}
+    <li class="nav-item">
+        <a class="nav-link active" href="{% url 's_admin:s_admin_order_list' %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-file">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                <polyline points="13 2 13 9 20 9"></polyline>
+            </svg>
+            Orders
+        </a>
+    </li>
+{% endblock nav_orders %}
+{% block main %}
+    <div class=container>
+        <h3>Информация о заказе</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            <label>Заказчик</label>
+            <label>
+                <input type="text" value="{{ order.cart.customer }}" maxlength="15"
+                       class="textinput textInput form-control"
+                       disabled>
+            </label>
+            <label>Сумма заказа</label>
+            <label>
+                <input type="text" value="{{ object.cart.total_price }}" maxlength="15"
+                       class="textinput textInput form-control" disabled>
+            </label>
+            <label>Книги в заказе</label>
+            {% for books in object.cart.books.all %}
+                <label>
+                    <input type="text"
+                           value="{{ books.book }}, Кол-во: {{ books.quantity }}, Цена за штуку: {{ books.price }}"
+                           maxlength="15" class="textinput textInput form-control" disabled>
+                </label>
+
+
+            {% endfor %}
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" value="Update">Update</button>
+            <a class="btn btn-dark" href="{% url 's_admin:s_admin_order_list' %}"> Back </a>
+            <a class="btn btn-danger" href="{% url 's_admin:s_admin_order_delete' order.pk %}">Delete</a>
+        </form>
+
+    </div>
+
+{% endblock main %}
