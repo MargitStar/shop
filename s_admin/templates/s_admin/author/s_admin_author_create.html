@@ -1,0 +1,14 @@
+{% extends "s_admin_base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}<title>Add new author</title>{% endblock title %}
+{% block main %}
+    <div class=container>
+        <h3>Add new author</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input class="btn btn-primary" type="submit" value="Create">
+            <a class="btn btn-success" href="{% url 's_admin:s_admin_author_list' %}">Back </a>
+        </form>
+    </div>
+{% endblock main %}
