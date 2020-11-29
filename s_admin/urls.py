@@ -25,4 +25,14 @@ urlpatterns = [
     path('author/view/<int:pk>/', views.SAdminAuthorView.as_view(), name='s_admin_author_view'),
     path('author/delete/<int:pk>/', views.SAdminAuthorDelete.as_view(), name='s_admin_author_delete'),
     path('author/update/<int:pk>/', views.SAdminAuthorUpdate.as_view(), name='s_admin_author_update'),
+
+    path('publishing_house/list/', views.SAdminPublishingHouseList.as_view(), name='s_admin_publishing_house_list'),
+    path('publishing_house/create/', views.SAdminPublishingHouseCreate.as_view(),
+         name='s_admin_publishing_house_create'),
+    path('publishing_house/view/<int:pk>/', views.SAdminPublishingHouseView.as_view(),
+         name='s_admin_publishing_house_view'),
+    path('publishing_house/update/<int:pk>/', views.SAdminPublishingHouseUpdate.as_view(),
+         name='s_admin_publishing_house_update'),
+    path('publishing_house/delete/<int:pk>/', views.SAdminPublishingHouseDelete.as_view(),
+         name='s_admin_publishing_house_delete'),
 ]
