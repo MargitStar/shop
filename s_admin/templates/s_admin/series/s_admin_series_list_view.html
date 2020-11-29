@@ -1,0 +1,28 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Series List</title> {% endblock title %}
+
+{% block main %}
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_series_create' %}">Create</a>
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Series</th>
+            <th>Description</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for series in object_list %}
+            <tr>
+                <td>{{ series.title }}</td>
+                <td>{{ series.description }}</td>
+                 <td><a class="btn badge-info" href="{% url 's_admin:s_admin_series_view' series.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_series_update' series.pk %}">Update</a></td>
+                <td><a class="btn badge-danger" href="{% url 's_admin:s_admin_series_delete' series.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
