@@ -19,4 +19,10 @@ urlpatterns = [
     path('series/view/<int:pk>/', views.SAdminSeriesView.as_view(), name='s_admin_series_view'),
     path('series/update/<int:pk>/', views.SAdminSeriesUpdate.as_view(), name='s_admin_series_update'),
     path('series/delete/<int:pk>/', views.SAdminSeriesDelete.as_view(), name='s_admin_series_delete'),
+
+    path('author/list/', views.SAdminAuthorList.as_view(), name='s_admin_author_list'),
+    path('author/create/', views.SAdminAuthorCreate.as_view(), name='s_admin_author_create'),
+    path('author/view/<int:pk>/', views.SAdminAuthorView.as_view(), name='s_admin_author_view'),
+    path('author/delete/<int:pk>/', views.SAdminAuthorDelete.as_view(), name='s_admin_author_delete'),
+    path('author/update/<int:pk>/', views.SAdminAuthorUpdate.as_view(), name='s_admin_author_update'),
 ]
