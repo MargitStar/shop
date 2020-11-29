@@ -173,3 +173,63 @@ class SAdminSeriesView(LoginRequiredMixin, DetailView):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
+
+
+class SAdminAuthorList(LoginRequiredMixin, ListView):
+    model = ref_models.Author
+    template_name = 's_admin/author/s_admin_author_list.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminAuthorDelete(LoginRequiredMixin, DeleteView):
+    model = ref_models.Author
+    success_url = reverse_lazy('s_admin:s_admin_author_list')
+    template_name = 's_admin/author/s_admin_author_delete.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminAuthorUpdate(LoginRequiredMixin, UpdateView):
+    model = ref_models.Author
+    fields = '__all__'
+    success_url = reverse_lazy('s_admin:s_admin_author_list')
+    template_name = 's_admin/series/s_admin_series_update.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminAuthorCreate(LoginRequiredMixin, CreateView):
+    model = ref_models.Author
+    fields = '__all__'
+    success_url = reverse_lazy('s_admin:s_admin_author_list')
+    template_name = 's_admin/author/s_admin_author_create.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminAuthorView(LoginRequiredMixin, DetailView):
+    model = ref_models.Author
+    template_name = 's_admin/author/s_admin_author_view.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
