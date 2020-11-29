@@ -1,0 +1,24 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Order List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_genre_create'%}">Create</a>
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Genre</th>
+            <th>Description</th>
+        </tr>
+        {% for genre in object_list %}
+            <tr>
+                <td>{{ genre.genre }}</td>
+                <td>{{ genre.description }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
