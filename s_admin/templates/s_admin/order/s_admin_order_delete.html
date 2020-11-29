@@ -19,8 +19,8 @@
     <body>
     <h1>Delete Order #{{ object.pk }} ?</h1>
     <form action="" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         {{ form|crispy }}
-    <a href="{% url 's_admin:s_admin_order_list' %}" class="btn btn-danger" type="submit">Delete</a>
+        <button type="submit" class="btn btn-secondary">Delete</button>
     </form>
 {% endblock main %}
