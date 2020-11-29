@@ -4,17 +4,23 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
-    <a class="btn btn-success" href="{% url 's_admin:s_admin_genre_create'%}">Create</a>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_genre_create' %}">Create</a>
     <table class="table table-striped">
         <thead class="thead-dark"></thead>
         <tr>
             <th>Genre</th>
             <th>Description</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         {% for genre in object_list %}
             <tr>
                 <td>{{ genre.genre }}</td>
                 <td>{{ genre.description }}</td>
+                 <td><a class="btn badge-info" href="{% url 's_admin:s_admin_genre_view' genre.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_genre_update' genre.pk %}">Update</a></td>
+                <td><a class="btn badge-danger" href="{% url 's_admin:s_admin_genre_delete' genre.pk %}">Delete</a></td>
             </tr>
         {% endfor %}
     </table>
