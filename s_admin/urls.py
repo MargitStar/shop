@@ -13,4 +13,10 @@ urlpatterns = [
     path('genre/view/<int:pk>/', views.SAdminGenreView.as_view(), name='s_admin_genre_view'),
     path('genre/update/<int:pk>/', views.SAdminGenreUpdate.as_view(), name='s_admin_genre_update'),
     path('genre/delete/<int:pk>/', views.SAdminGenreDelete.as_view(), name='s_admin_genre_delete'),
+
+    path('series/list/', views.SAdminSeriesList.as_view(), name='s_admin_series_list'),
+    path('series/create/', views.SAdminSeriesCreate.as_view(), name='s_admin_series_create'),
+    path('series/view/<int:pk>/', views.SAdminSeriesView.as_view(), name='s_admin_series_view'),
+    path('series/update/<int:pk>/', views.SAdminSeriesUpdate.as_view(), name='s_admin_series_update'),
+    path('series/delete/<int:pk>/', views.SAdminSeriesDelete.as_view(), name='s_admin_series_delete'),
 ]
