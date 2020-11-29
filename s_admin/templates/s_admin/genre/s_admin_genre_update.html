@@ -1,0 +1,13 @@
+{% extends "s_admin_base.html" %}
+{% load crispy_forms_filters %}
+{% block title %}<title>Update genre {{ object.genre }}</title>{% endblock title %}
+
+{% block main %}
+    <div class=container>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button class="btn btn-success" value="Update">Update</button>
+        </form>
+    </div>
+{% endblock main %}
