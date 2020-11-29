@@ -1,0 +1,27 @@
+{% extends "s_admin_base.html" %}
+{% block title %}<title>Publishing House {{ object.house }}</title>{% endblock title %}
+
+{% block main %}
+    <body>
+    <h1>House: {{ object.house }}</h1>
+
+    <div class="card mb-10" style="max-width: 1850px;">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">Publishing House name: <b>{{ object.house }}</b></li>
+                        <li class="list-group-item">History: <b>{{ object.history }}</b></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_publishing_house_list' %}">Back </a>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+{% endblock main %}
