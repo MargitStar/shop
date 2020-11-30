@@ -1,0 +1,46 @@
+{% extends "s_admin_base.html" %}
+{% block title %}<title>Book {{ object.name }}</title>{% endblock title %}
+
+{% block main %}
+    <body>
+    <h1>Book: {{ object.name }}</h1>
+
+    <div class="card mb-10" style="max-width: 1850px;">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">Book name: <b>{{ object.genre }}</b></li>
+                        <li class="list-group-item">Cover: <b>{{ book.cover_photo.url }}</b></li>
+                        <li class="list-group-item">Author: <b>{% for author in book.author.all %}
+                            {{ author }}<br>
+                        {% endfor %}</b></li>
+                        <li class="list-group-item">Series: <b>{{ book.series.title }}</b></li>
+                        <li class="list-group-item">Publishing House: <b>{{ book.publishing_house.house }}</b></li>
+                        <li class="list-group-item">Genre: <b>{% for genre in book.genre.all %}
+                            {{ genre }}<br>
+                        {% endfor %}</b></li>
+                        <li class="list-group-item">Price: <b>{{ book.price }}</b></li>
+                        <li class="list-group-item">Format: <b>{{ book.format }}</b></li>
+                        <li class="list-group-item">ISBN: <b>{{ book.isbn_code }}</b></li>
+                        <li class="list-group-item">Publishing Date: <b>{{ book.publishing_date }}</b></li>
+                        <li class="list-group-item">Pages Amount: <b>{{ book.pages_amount }}</b></li>
+                        <li class="list-group-item">Binding: <b>{{ book.binding }}</b></li>
+                        <li class="list-group-item">Weight: <b>{{ book.weight }}</b></li>
+                        <li class="list-group-item">Amount: <b>{{ book.books_amount }}</b></li>
+                        <li class="list-group-item">Age limit: <b>{{ book.age_limit }}</b></li>
+                        <li class="list-group-item">Rating: <b>{{ book.rating }}</b></li>
+                        <li class="list-group-item">Active: <b>{{ book.is_active }}</b></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_book_list' %}">Back </a>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+{% endblock main %}
