@@ -25,7 +25,7 @@ class SAdminOrderList(LoginRequiredMixin, ListView):
     success_url = reverse_lazy('s_admin:s_admin_order_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -38,7 +38,7 @@ class SAdminOrderUpdate(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('s_admin:s_admin_order_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -50,7 +50,7 @@ class SAdminOrderDelete(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('s_admin:s_admin_order_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -61,7 +61,7 @@ class SAdminGenreList(LoginRequiredMixin, ListView):
     template_name = 's_admin/genre/s_admin_genre_list.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -74,7 +74,7 @@ class SAdminGenreCreate(LoginRequiredMixin, CreateView):
     template_name = 's_admin/genre/s_admin_genre_create.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -87,7 +87,7 @@ class SAdminGenreUpdate(LoginRequiredMixin, UpdateView):
     template_name = 's_admin/genre/s_admin_genre_update.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -99,7 +99,7 @@ class SAdminGenreDelete(LoginRequiredMixin, DeleteView):
     template_name = 's_admin/genre/s_admin_genre_delete.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -110,7 +110,7 @@ class SAdminGenreView(LoginRequiredMixin, DetailView):
     template_name = 's_admin/genre/s_admin_genre_view.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -121,7 +121,7 @@ class SAdminSeriesList(LoginRequiredMixin, ListView):
     template_name = 's_admin/series/s_admin_series_list_view.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -134,7 +134,7 @@ class SAdminSeriesUpdate(LoginRequiredMixin, UpdateView):
     template_name = 's_admin/series/s_admin_series_update.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -146,7 +146,7 @@ class SAdminSeriesDelete(LoginRequiredMixin, DeleteView):
     template_name = 's_admin/series/s_admin_series_delete.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -159,7 +159,7 @@ class SAdminSeriesCreate(LoginRequiredMixin, CreateView):
     template_name = 's_admin/series/s_admin_series_create.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -170,7 +170,7 @@ class SAdminSeriesView(LoginRequiredMixin, DetailView):
     template_name = 's_admin/series/s_admin_series_view.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -181,7 +181,7 @@ class SAdminAuthorList(LoginRequiredMixin, ListView):
     template_name = 's_admin/author/s_admin_author_list.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -193,7 +193,7 @@ class SAdminAuthorDelete(LoginRequiredMixin, DeleteView):
     template_name = 's_admin/author/s_admin_author_delete.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -206,7 +206,7 @@ class SAdminAuthorUpdate(LoginRequiredMixin, UpdateView):
     template_name = 's_admin/series/s_admin_series_update.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -219,7 +219,7 @@ class SAdminAuthorCreate(LoginRequiredMixin, CreateView):
     template_name = 's_admin/author/s_admin_author_create.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -230,7 +230,7 @@ class SAdminAuthorView(LoginRequiredMixin, DetailView):
     template_name = 's_admin/author/s_admin_author_view.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -241,7 +241,7 @@ class SAdminPublishingHouseList(LoginRequiredMixin, ListView):
     template_name = 's_admin/publishing_house/s_admin_publishing_house_list.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -252,7 +252,7 @@ class SAdminPublishingHouseView(LoginRequiredMixin, DetailView):
     template_name = 's_admin/publishing_house/s_admin_publishing_house_view.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -265,7 +265,7 @@ class SAdminPublishingHouseCreate(LoginRequiredMixin, CreateView):
     template_name = 's_admin/publishing_house/s_admin_publishing_house_create.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -278,7 +278,7 @@ class SAdminPublishingHouseUpdate(LoginRequiredMixin, UpdateView):
     template_name = 's_admin/publishing_house/s_admin_publishing_house_update.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -290,7 +290,7 @@ class SAdminPublishingHouseDelete(LoginRequiredMixin, DeleteView):
     template_name = 's_admin/publishing_house/s_admin_publishing_house_delete.html'
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -301,7 +301,7 @@ class SAdminBookList(LoginRequiredMixin, book_view.BookListView):
     paginate_by = 10
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -312,7 +312,7 @@ class SAdminBookDelete(LoginRequiredMixin, book_view.DeleteBookView):
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -323,7 +323,7 @@ class SAdminBookUpdate(LoginRequiredMixin, book_view.UpdateBook):
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -334,7 +334,7 @@ class SAdminBookCreate(book_view.CreateBook):
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
@@ -345,7 +345,7 @@ class SAdminBookView(LoginRequiredMixin, book_view.BookView):
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
     def get_queryset(self):
-        if self.request.user.groups.filter(name='Customers'):
+        if self.request.user.groups.filter(name='Customer'):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
