@@ -35,4 +35,10 @@ urlpatterns = [
          name='s_admin_publishing_house_update'),
     path('publishing_house/delete/<int:pk>/', views.SAdminPublishingHouseDelete.as_view(),
          name='s_admin_publishing_house_delete'),
+
+    path('book/list/', views.SAdminBookList.as_view(), name='s_admin_book_list'),
+    path('book/create/', views.SAdminBookCreate.as_view(), name='s_admin_book_create'),
+    path('book/delete/<int:pk>/', views.SAdminBookDelete.as_view(), name='s_admin_book_delete'),
+    path('book/update/<int:pk>/', views.SAdminBookUpdate.as_view(), name='s_admin_book_update'),
+    path('book/view/<int:pk>/', views.SAdminBookView.as_view(), name='s_admin_book_view'),
 ]
