@@ -1,0 +1,30 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Genre List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_book_create' %}">Create</a>
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Book</th>
+            <th>Price</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        {% for book in object_list %}
+            <tr>
+                <td>{{ book.name }}</td>
+                <td>{{ book.price }}</td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_book_view' book.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_book_update' book.pk%}">Update</a></td>
+                <td><a class="btn badge-danger" href="{% url 's_admin:s_admin_book_delete' book.pk %}">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
