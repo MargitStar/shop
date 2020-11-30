@@ -3,6 +3,7 @@ from django.shortcuts import render
 from cart.models import BookInCart, Cart
 
 from books.models import Book
+from books import views as book_view
 
 from order.models import Order
 
@@ -287,6 +288,61 @@ class SAdminPublishingHouseDelete(LoginRequiredMixin, DeleteView):
     model = ref_models.PublishingHouse
     success_url = reverse_lazy('s_admin:s_admin_publishing_house_list')
     template_name = 's_admin/publishing_house/s_admin_publishing_house_delete.html'
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminBookList(LoginRequiredMixin, book_view.BookListView):
+    template_name = 's_admin/book/s_admin_book_list.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminBookDelete(LoginRequiredMixin, book_view.DeleteBookView):
+    template_name = 's_admin/book/s_admin_book_delete.html'
+    success_url = reverse_lazy('s_admin:s_admin_book_list')
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminBookUpdate(LoginRequiredMixin, book_view.UpdateBook):
+    template_name = 's_admin/book/s_admin_book_update.html'
+    success_url = reverse_lazy('s_admin:s_admin_book_list')
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminBookCreate(book_view.CreateBook):
+    template_name = 's_admin/book/s_admin_book_create.html'
+    success_url = reverse_lazy('s_admin:s_admin_book_list')
+
+    def get_queryset(self):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class SAdminBookView(LoginRequiredMixin, book_view.BookView):
+    template_name = 's_admin/book/s_admin_book_view.html'
+    success_url = reverse_lazy('s_admin:s_admin_book_list')
 
     def get_queryset(self):
         if self.request.user.groups.filter(name='Customers'):
