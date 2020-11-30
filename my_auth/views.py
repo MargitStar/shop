@@ -5,6 +5,7 @@ from django.views.generic.edit import CreateView
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.contrib.auth.models import Group
 
 
 class MyLogInView(LoginView):
@@ -35,5 +36,7 @@ class SignUpView(CreateView):
         username = self.request.POST['username']
         password = self.request.POST['password1']
         user = authenticate(username=username, password=password)
+        group, created = Group.objects.get_or_create(name="Customer")
+        group.user_set.add(user)
         login(self.request, user)
         return HttpResponseRedirect(reverse_lazy('profile:profile_view'))
