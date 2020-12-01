@@ -349,3 +349,34 @@ class SAdminBookView(LoginRequiredMixin, book_view.BookView):
             return self.handle_no_permission()
         else:
             return self.model.objects.all()
+
+
+class CustomersList(LoginRequiredMixin, ListView):
+    model = Profile
+    template_name = 's_admin/customer/s_admin_customer_list.html'
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class CustomerUpdate(my_profile_views.UpdateProfileView):
+    template_name = 's_admin/customer/s_admin_customer_update.html'
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
+
+
+class CustomerView(my_profile_views.ProfileView):
+    template_name = 's_admin/customer/s_admin_customer_view.html'
+
+    def get_queryset(self, *args, **kwargs):
+        if self.request.user.groups.filter(name='Customers'):
+            return self.handle_no_permission()
+        else:
+            return self.model.objects.all()
