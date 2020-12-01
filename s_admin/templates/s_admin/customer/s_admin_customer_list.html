@@ -1,0 +1,27 @@
+{% extends "s_admin_base.html" %}
+{% block title %} <title>Customers List</title> {% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block main %}
+    <table class="table table-striped">
+        <thead class="thead-dark"></thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>View</th>
+            <th>Update</th>
+        </tr>
+        {% for user in object_list %}
+            <tr>
+                <td>{{ user.user }}</td>
+                <td>{{ user.email }}</td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_customer_update' user.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_customer_update' user.pk%}">Update</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+{% endblock main %}
