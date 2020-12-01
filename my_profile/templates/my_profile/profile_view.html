@@ -7,8 +7,8 @@
 
 {% block body %}
     <h1>{{ user.username|title }}'s Profile</h1>
-    <table class="table table-striped table-dark">
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col"></th>
@@ -34,7 +34,7 @@
         <tr>
             <th scope="row">4</th>
             <td>Email</td>
-            <td>{{ user.prof_user.email }}</td>
+            <td>{{ user.prof_user.email|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">5</th>
@@ -49,7 +49,7 @@
         <tr>
             <th scope="row">7</th>
             <td>City</td>
-            <td>{{ user.prof_user.city }}</td>
+            <td>{{ user.prof_user.city|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">8</th>
@@ -83,28 +83,30 @@
     </a><br>
 
     <h4>My orders</h4>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">Order №</th>
-            <th scope="col">Book</th>
-            <th scope="col">Price</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            {% for foo in profile.user.templates.all %}
-                {% if foo.order %}
-                    {% for book in foo.books.all %}
-                        <th scope="row">{{ foo.order.pk }}</th>
+    {% for foo in profile.user.templates.all %}
+        {% if foo.order %}
+            <b>Order № {{ foo.order.id }}</b></br>
+            <b>Order Status: {{ foo.order.status2 }}</b>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Book</th>
+                    <th scope="col">Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in foo.books.all %}
+                    <tr>
                         <td>{{ book.book.name }}</td>
                         <td>{{ book.price }}</td>
-                    {% endfor %}
-                {% endif %}
-            {% endfor %}
-        </tr>
-        </tbody>
-    </table>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+            <b>Total price {{ foo.total_price }}</b><br>
+        {% endif %}<br>
+    {% endfor %}
 {% endblock body %}
 
 
