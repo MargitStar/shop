@@ -23,6 +23,7 @@ class Order(models.Model):
             ('The order is completed', 'The order is completed')
         ),
         max_length=100,
+        default='The order is being processed'
     )
 
     delivery_address = models.CharField(
