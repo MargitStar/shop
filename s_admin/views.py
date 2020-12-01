@@ -373,9 +373,9 @@ class CustomerUpdate(my_profile_views.UpdateProfileView):
             return self.model.objects.all()
 
 
-class CustomerView(my_profile_views.ProfileView):
+class CustomerView(LoginRequiredMixin, DetailView):
     template_name = 's_admin/customer/s_admin_customer_view.html'
-
+    model = Profile
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.groups.filter(name='Customers'):

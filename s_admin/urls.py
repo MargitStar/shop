@@ -45,5 +45,5 @@ urlpatterns = [
 
     path('customer/list/', views.CustomersList.as_view(), name='s_admin_customer_list'),
     path('customer/update/<int:pk>/', views.CustomerUpdate.as_view(), name='s_admin_customer_update'),
-    path('customer/view/', views.CustomerView.as_view(), name='s_admin_customer_view')
+    path('customer/view/<int:pk>/', views.CustomerView.as_view(), name='s_admin_customer_view')
 ]
