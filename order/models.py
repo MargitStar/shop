@@ -1,6 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from cart.models import Cart
+from datetime import datetime
 
 
 class Order(models.Model):
@@ -33,6 +34,10 @@ class Order(models.Model):
 
     contact_phone = PhoneNumberField(
         'Phone number'
+    )
+
+    create = models.DateTimeField(
+        default=datetime.now()
     )
 
     create_date = models.DateField(
