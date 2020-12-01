@@ -10,23 +10,22 @@
             <div class="col-md-5">
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-
-                        <li class="list-group-item">First name: <b>{{ user.prof_user.first_name }}</b></li>
-                        <li class="list-group-item">Last name: <b>{{ user.prof_user.last_name }}</b></li>
-                        <li class="list-group-item">Email: <b>{{ user.prof_user.email }}</b></li>
-                        <li class="list-group-item">Phone Number: <b>{{ user.prof_user.phone_number }}</b></li>
-                        <li class="list-group-item">Country: <b>{{ user.prof_user.country }}</b></li>
-                        <li class="list-group-item">City: <b>{{ user.prof_user.city }}</b></li>
-                        <li class="list-group-item">Address 1: <b>{{ user.prof_user.address1 }}</b></li>
-                        <li class="list-group-item">Address 2: <b>{{ user.prof_user.address2 }}</b></li>
-                        <li class="list-group-item">Zip code: <b>{{ user.prof_user.zip_code }}</b></li>
-                        <li class="list-group-item">Additional info: <b>{{ user.prof_user.additional_info }}</b></li>
+                        <li class="list-group-item">First name: <b>{{ object.first_name }}</b></li>
+                        <li class="list-group-item">Last name: <b>{{ object.last_name }}</b></li>
+                        <li class="list-group-item">Email: <b>{{ object.email }}</b></li>
+                        <li class="list-group-item">Phone Number: <b>{{ object.phone_number }}</b></li>
+                        <li class="list-group-item">Country: <b>{{ object.country }}</b></li>
+                        <li class="list-group-item">City: <b>{{ object.city| default_if_none:"" }}</b></li>
+                        <li class="list-group-item">Address 1: <b>{{ object.address1| default_if_none:"" }}</b></li>
+                        <li class="list-group-item">Address 2: <b>{{ object.address2| default_if_none:"" }}</b></li>
+                        <li class="list-group-item">Zip code: <b>{{ object.zip_code| default_if_none:"" }}</b></li>
+                        <li class="list-group-item">Additional info: <b>{{ object.additional_info| default_if_none:"" }}</b></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <a class="btn btn-success" href="{% url 's_admin:s_admin_customer_view' %}">Back </a>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_customer_list' %}">Back </a>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
