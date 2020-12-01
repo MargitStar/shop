@@ -1,13 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from . import forms
 from . import models
-from django.views.generic import UpdateView, TemplateView, DetailView
-from django.http import HttpResponseRedirect
+from django.views.generic import UpdateView, TemplateView
 
 
-class ProfileView(TemplateView):
+class ProfileView(LoginRequiredMixin, TemplateView):
     model = models.Profile
     template_name = 'my_profile/profile_view.html'
+    login_url = reverse_lazy('login')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
@@ -28,8 +29,9 @@ class ProfileView(TemplateView):
         return context
 
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
     model = models.Profile
+    login_url = reverse_lazy('login')
     template_name = 'my_profile/update_profile.html'
     fields = ('first_name',
               'last_name',
