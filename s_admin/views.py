@@ -364,6 +364,7 @@ class CustomersList(LoginRequiredMixin, ListView):
 
 class CustomerUpdate(my_profile_views.UpdateProfileView):
     template_name = 's_admin/customer/s_admin_customer_update.html'
+    success_url = reverse_lazy('s_admin:s_admin_customer_list')
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.groups.filter(name='Customers'):
@@ -374,6 +375,7 @@ class CustomerUpdate(my_profile_views.UpdateProfileView):
 
 class CustomerView(my_profile_views.ProfileView):
     template_name = 's_admin/customer/s_admin_customer_view.html'
+
 
     def get_queryset(self, *args, **kwargs):
         if self.request.user.groups.filter(name='Customers'):
