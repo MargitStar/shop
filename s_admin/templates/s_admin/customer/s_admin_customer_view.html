@@ -1,0 +1,34 @@
+{% extends "s_admin_base.html" %}
+{% block title %}<title>Profile {{ object.user }}</title>{% endblock title %}
+
+{% block main %}
+    <body>
+    <h1>User: {{ object.user }}</h1>
+
+    <div class="card mb-10" style="max-width: 1850px;">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item">First name: <b>{{ user.prof_user.first_name }}</b></li>
+                        <li class="list-group-item">Last name: <b>{{ user.prof_user.last_name }}</b></li>
+                        <li class="list-group-item">Email: <b>{{ user.prof_user.email }}</b></li>
+                        <li class="list-group-item">Phone Number: <b>{{ user.prof_user.phone_number }}</b></li>
+                        <li class="list-group-item">Country: <b>{{ user.prof_user.country }}</b></li>
+                        <li class="list-group-item">City: <b>{{ user.prof_user.city }}</b></li>
+                        <li class="list-group-item">Address 1: <b>{{ user.prof_user.address1 }}</b></li>
+                        <li class="list-group-item">Address 2: <b>{{ user.prof_user.address2 }}</b></li>
+                        <li class="list-group-item">Zip code: <b>{{ user.prof_user.zip_code }}</b></li>
+                        <li class="list-group-item">Additional info: <b>{{ user.prof_user.additional_info }}</b></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-success" href="{% url 's_admin:s_admin_genre_list' %}">Back </a>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    </body>
+{% endblock main %}
