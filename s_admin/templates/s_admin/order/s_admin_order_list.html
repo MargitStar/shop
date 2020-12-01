@@ -35,17 +35,17 @@
             <tr>
 
                 {% if order.status2 == 'The order is being delivered' %}
-                    <td><a class="btn btn-info"
+                    <td><a
                            href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
                 {% elif order.status2 == 'The order is being processed' %}
-                    <td><a class="btn btn-primary"
+                    <td><a
                            href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
                 {% elif order.status2 == 'The order was canceled' %}
-                    <td><a class="btn btn-danger"
+                    <td><a
                            href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
                     </td>
                 {% elif order.status2 == 'The order is completed' %}
-                    <td><a class="btn btn-success"
+                    <td><a
                            href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
                     </td>
                 {% endif %}
