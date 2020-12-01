@@ -41,4 +41,9 @@ urlpatterns = [
     path('book/delete/<int:pk>/', views.SAdminBookDelete.as_view(), name='s_admin_book_delete'),
     path('book/update/<int:pk>/', views.SAdminBookUpdate.as_view(), name='s_admin_book_update'),
     path('book/view/<int:pk>/', views.SAdminBookView.as_view(), name='s_admin_book_view'),
+
+
+    path('customer/list/', views.CustomersList.as_view(), name='s_admin_customer_list'),
+    path('customer/update/<int:pk>/', views.CustomerUpdate.as_view(), name='s_admin_customer_update'),
+    path('customer/view/', views.CustomerView.as_view(), name='s_admin_customer_view')
 ]
