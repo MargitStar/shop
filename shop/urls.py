@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from books.views import BookListView, BookView, CreateBook, DeleteBookView, UpdateBook
+from books.views import BookListView, BookView, CreateBook, DeleteBookView, UpdateBook, BookSearch
 
 from references import views
 from home_screen.views import TopBooksListView
@@ -27,6 +27,7 @@ from cart import urls
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('book/', BookListView.as_view()),
+    path('book/search/', BookSearch.as_view(), name='search'),
     path('signin/', MyLogInView.as_view(), name="login"),
     path('logout/', MyLogOutView.as_view(), name='logout'),
     path('password_change/', MyPasswordChangeView.as_view(),

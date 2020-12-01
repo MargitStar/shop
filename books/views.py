@@ -2,6 +2,7 @@ from django.shortcuts import render
 from books import forms, models
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
 
 
 class BookListView(ListView):
@@ -34,3 +35,15 @@ class DeleteBookView(DeleteView):
     model = models.Book
     template_name = 'refs/delete_view.html'
     success_url = '/book'
+
+
+class BookSearch(ListView):
+    model = models.Book
+    template_name = 'books/book_list.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        search = self.request.GET.get('search')
+        books = models.Book.objects.filter(Q(name__icontains=search))
+        return books
+
