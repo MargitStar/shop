@@ -11,6 +11,12 @@ from django.contrib.auth.models import Group
 class MyLogInView(LoginView):
     template_name = 'registration/log_in.html'
 
+    def get_success_url(self):
+        if self.request.user.groups.filter(name='Customer'):
+            return '/'
+        else:
+            return reverse_lazy('s_admin:s_admin_order_list')
+
 
 class MyLogOutView(LogoutView):
     template_name = 'registration/log-out.html'
