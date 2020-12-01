@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ user.user }}</td>
                 <td>{{ user.email }}</td>
-                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_customer_update' user.pk %}">View</a></td>
+                <td><a class="btn badge-info" href="{% url 's_admin:s_admin_customer_view' %}">View</a></td>
                 <td><a class="btn badge-info" href="{% url 's_admin:s_admin_customer_update' user.pk%}">Update</a></td>
             </tr>
         {% endfor %}
