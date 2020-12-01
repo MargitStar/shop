@@ -29,19 +29,24 @@
             <th>Updated</th>
             <th>Price</th>
             <th>Books</th>
+            <th>Time</th>
         </tr>
         {% for order in object_list %}
             <tr>
 
                 {% if order.status2 == 'The order is being delivered' %}
-                    <td><a class="btn btn-info" href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
+                    <td><a class="btn btn-info"
+                           href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
                 {% elif order.status2 == 'The order is being processed' %}
-                    <td><a class="btn btn-primary" href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
+                    <td><a class="btn btn-primary"
+                           href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a></td>
                 {% elif order.status2 == 'The order was canceled' %}
-                    <td><a class="btn btn-danger" href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
+                    <td><a class="btn btn-danger"
+                           href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
                     </td>
                 {% elif order.status2 == 'The order is completed' %}
-                    <td><a class="btn btn-success" href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
+                    <td><a class="btn btn-success"
+                           href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.status2 }}</a>
                     </td>
                 {% endif %}
 
@@ -67,6 +72,7 @@
                         <a href="">{{ books.book }}</a> <br>
                     {% endfor %}
                 </td>
+                <td>{{ order.create }}</td>
             </tr>
         {% endfor %}
     </table>
