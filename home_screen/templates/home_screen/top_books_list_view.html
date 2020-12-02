@@ -4,6 +4,17 @@
     <title>Home Page</title>
 {% endblock title %}
 {% block body %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-header">
+    Currencies
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">USD: {{ USD }}</li>
+    <li class="list-group-item">EUR: {{ EUR }}</li>
+    <li class="list-group-item">RUB: {{ RUB }}</li>
+  </ul>
+</div>
+
     <h1>Last 10 books</h1>
     <div class="row">
         {% for book in books %}
