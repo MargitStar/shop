@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
-from cart.models import BookInCart, Cart
-
-from books.models import Book
 from books import views as book_view
 
 from order.models import Order
@@ -12,8 +9,6 @@ from references import models as ref_models
 from my_profile.models import Profile
 from my_profile import views as my_profile_views
 
-from django.contrib.auth.models import User
-from django.core.exceptions import PermissionDenied
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
