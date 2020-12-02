@@ -26,10 +26,8 @@
             <th>Delivery Address</th>
             <th>Phone Number</th>
             <th>Created</th>
-            <th>Updated</th>
             <th>Price</th>
             <th>Books</th>
-            <th>Time</th>
         </tr>
         {% for order in object_list %}
             <tr>
@@ -51,10 +49,10 @@
                 {% endif %}
 
 
-                <td><a href="">{{ order.pk }}</a></td>
+                <td><a href="{% url 's_admin:s_admin_order_update' order.pk %}">{{ order.pk }}</a></td>
                 {% if order.cart.customer.pk %}
                     <td>
-                        <a href="">{{ order.cart.customer.username }}</a>
+                        <a href="{% url 's_admin:s_admin_customer_view' order.cart.customer.pk%}">{{ order.cart.customer.username }}</a>
                     </td>
                 {% else %}
                     <td>Guest</td>
@@ -62,17 +60,15 @@
 
                 <td>{{ order.delivery_address }}</td>
                 <td>{{ order.contact_phone }}</td>
-                <td>{{ order.created_date }}</td>
-                <td>{{ order.updated_date }}</td>
+                <td>{{ order.create }}</td>
                 <td>
                     {{ order.cart.total_price }} BYN
                 </td>
                 <td>
                     {% for books in order.cart.books.all %}
-                        <a href="">{{ books.book }}</a> <br>
+                        <a href="{% url 's_admin:s_admin_book_view' books.book.pk %}">{{ books.book }}</a> <br>
                     {% endfor %}
                 </td>
-                <td>{{ order.create }}</td>
             </tr>
         {% endfor %}
     </table>

@@ -21,7 +21,7 @@
             {% for books in object.cart.books.all %}
                 <label>
                     <input type="text"
-                           value="{{ books.book }}, Кол-во: {{ books.quantity }}, Цена за штуку: {{ books.price }}"
+                           value="{{ books.book }}"
                            maxlength="15" class="textinput textInput form-control" disabled>
                 </label>
 
