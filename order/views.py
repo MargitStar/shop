@@ -83,3 +83,8 @@ class CancelOrder(LoginRequiredMixin, UpdateView):
             new_order.status2 = 'The order was canceled'
             new_order.save()
             return reverse_lazy('profile:profile_view')
+        else:
+            new_order = Order.objects.filter(pk=order_id).first()
+            new_order.status2 = 'The order is being processed'
+            new_order.save()
+            return reverse_lazy('profile:profile_view')
