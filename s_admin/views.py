@@ -302,7 +302,7 @@ class SAdminBookList(LoginRequiredMixin, book_view.BookListView):
             return self.model.objects.all()
 
 
-class SAdminBookDelete(LoginRequiredMixin, book_view.DeleteBookView):
+class SAdminBookDelete(book_view.DeleteBookView):
     template_name = 's_admin/book/s_admin_book_delete.html'
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
@@ -313,7 +313,7 @@ class SAdminBookDelete(LoginRequiredMixin, book_view.DeleteBookView):
             return self.model.objects.all()
 
 
-class SAdminBookUpdate(LoginRequiredMixin, book_view.UpdateBook):
+class SAdminBookUpdate(book_view.UpdateBook):
     template_name = 's_admin/book/s_admin_book_update.html'
     success_url = reverse_lazy('s_admin:s_admin_book_list')
 
