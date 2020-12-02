@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 from references import models
 from references import forms
@@ -50,60 +52,68 @@ class SeriesView(DetailView):
     model = models.Series
 
 
-class CreateGenre(CreateView):
+class CreateGenre(LoginRequiredMixin, CreateView):
     template_name = 'refs/create_genre.html'
     model = models.Genre
     form_class = forms.CreateGenre
     success_url = '/genre'
+    login_url = reverse_lazy('login')
 
 
-class CreateAuthor(CreateView):
+class CreateAuthor(LoginRequiredMixin, CreateView):
     template_name = 'refs/create_author.html'
     model = models.Author
     form_class = forms.CreateAuthor
     success_url = '/author'
+    login_url = reverse_lazy('login')
 
 
-class CreatePublishingHouse(CreateView):
+class CreatePublishingHouse(LoginRequiredMixin, CreateView):
     template_name = 'refs/create_publishing_house.html'
     model = models.PublishingHouse
     form_class = forms.CreatePublishingHouse
     success_url = '/publishing_house'
+    login_url = reverse_lazy('login')
 
 
-class CreateSeries(CreateView):
+class CreateSeries(LoginRequiredMixin, CreateView):
     template_name = 'refs/create_series.html'
     model = models.Series
     form_class = forms.CreateSeries
     success_url = '/series'
+    login_url = reverse_lazy('login')
 
 
-class UpdateGenre(UpdateView):
+class UpdateGenre(LoginRequiredMixin, UpdateView):
     template_name = 'refs/update_genre.html'
     model = models.Genre
     form_class = forms.UpdateGenre
     success_url = '/genre'
+    login_url = reverse_lazy('login')
 
 
-class UpdateAuthor(UpdateView):
+class UpdateAuthor(LoginRequiredMixin, UpdateView):
     template_name = 'refs/update_author.html'
     model = models.Author
     form_class = forms.UpdateAuthor
     success_url = '/author'
+    login_url = reverse_lazy('login')
 
 
-class UpdatePublishingHouse(UpdateView):
+class UpdatePublishingHouse(LoginRequiredMixin, UpdateView):
     template_name = 'refs/update_publishing_house.html'
     model = models.PublishingHouse
     form_class = forms.UpdatePublishingHouse
     success_url = '/publishing_house'
+    login_url = reverse_lazy('login')
 
 
-class UpdateSeries(UpdateView):
+class UpdateSeries(LoginRequiredMixin, UpdateView):
     template_name = 'refs/update_series.html'
     model = models.Series
     form_class = forms.UpdateSeries
     success_url = '/series'
+    login_url = reverse_lazy('login')
 
 
 def update_author(request, pk_obj):
@@ -157,25 +167,29 @@ def update_publishing_house(request, pk_obj):
         return render(request, template_name='refs/update_publishing_house.html', context={'form': form})
 
 
-class DeleteGenreView(DeleteView):
+class DeleteGenreView(LoginRequiredMixin, DeleteView):
     model = models.Genre
     template_name = 'refs/delete_view.html'
     success_url = '/genre'
+    login_url = reverse_lazy('login')
 
 
-class DeleteAuthorView(DeleteView):
+class DeleteAuthorView(LoginRequiredMixin, DeleteView):
     model = models.Author
     template_name = 'refs/delete_view.html'
     success_url = '/author'
+    login_url = reverse_lazy('login')
 
 
-class DeletePublishingHouseView(DeleteView):
+class DeletePublishingHouseView(LoginRequiredMixin, DeleteView):
     model = models.PublishingHouse
     template_name = 'refs/delete_view.html'
     success_url = '/publishing_house'
+    login_url = reverse_lazy('login')
 
 
-class DeleteSeriesView(DeleteView):
+class DeleteSeriesView(LoginRequiredMixin, DeleteView):
     model = models.Series
     template_name = 'refs/delete_view.html'
     success_url = '/series'
+    login_url = reverse_lazy('login')
