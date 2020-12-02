@@ -4,20 +4,20 @@
 
 {% block main %}
     <div class=container>
-        <h3>Информация о заказе</h3>
+        <h3>Info</h3>
         <form action="" method="post" enctype="multipart/form-data">
-            <label>Заказчик</label>
+            <label>User</label>
             <label>
                 <input type="text" value="{{ order.cart.customer }}" maxlength="15"
                        class="textinput textInput form-control"
                        disabled>
             </label>
-            <label>Сумма заказа</label>
+            <label>Price</label>
             <label>
                 <input type="text" value="{{ object.cart.total_price }}" maxlength="15"
                        class="textinput textInput form-control" disabled>
             </label>
-            <label>Книги в заказе</label>
+            <label>Books</label>
             {% for books in object.cart.books.all %}
                 <label>
                     <input type="text"
