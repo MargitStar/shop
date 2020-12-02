@@ -24,12 +24,12 @@
         <tr>
             <th scope="row">2</th>
             <td>First Name</td>
-            <td>{{ user.prof_user.first_name }}</td>
+            <td>{{ user.prof_user.first_name|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">3</th>
             <td>Last Name</td>
-            <td>{{ user.prof_user.last_name }}</td>
+            <td>{{ user.prof_user.last_name|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">4</th>
@@ -39,12 +39,12 @@
         <tr>
             <th scope="row">5</th>
             <td>Phone Number</td>
-            <td>{{ user.prof_user.phone_number }}</td>
+            <td>{{ user.prof_user.phone_number|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">6</th>
             <td>Country</td>
-            <td>{{ user.prof_user.country.name }}</td>
+            <td>{{ user.prof_user.country.name|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">7</th>
@@ -54,22 +54,22 @@
         <tr>
             <th scope="row">8</th>
             <td>Address 1</td>
-            <td>{{ user.prof_user.address1 }}</td>
+            <td>{{ user.prof_user.address1|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">9</th>
             <td>Address 2</td>
-            <td>{{ user.prof_user.address2 }}</td>
+            <td>{{ user.prof_user.address2|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">10</th>
             <td>Zip Code</td>
-            <td>{{ user.prof_user.zip_code }}</td>
+            <td>{{ user.prof_user.zip_code|default_if_none:'----' }}</td>
         </tr>
         <tr>
             <th scope="row">11</th>
             <td>Additional Info</td>
-            <td>{{ user.prof_user.additional_info }}</td>
+            <td>{{ user.prof_user.additional_info|default_if_none:'----' }}</td>
         </tr>
         </tbody>
     </table>
