@@ -82,8 +82,8 @@
         </svg>
     </a>
 
-        <a href="{% url 'password_change' %}" class="btn btn-info">
-       Change password
+    <a href="{% url 'password_change' %}" class="btn btn-info">
+        Change password
     </a>
 
 
@@ -92,6 +92,7 @@
         {% if foo.order %}
             <b>Order № {{ foo.order.id }}</b></br>
             <b>Order Status: {{ foo.order.status2 }}</b>
+            <a href="{% url 'order:update_order' foo.order.id %}">update</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
@@ -104,6 +105,7 @@
                     <tr>
                         <td>{{ book.book.name }}</td>
                         <td>{{ book.price }}</td>
+
                     </tr>
                 {% endfor %}
                 </tbody>

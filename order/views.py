@@ -66,3 +66,20 @@ class CreateOrder(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             f"Your order {self.object} was created successfully. We will call you to confirm the order soon!"
         )
         return message
+
+
+class CancelOrder(LoginRequiredMixin, UpdateView):
+    template_name = 'order/update_order.html'
+    model = Order
+    fields = ('status1',)
+    success_url = reverse_lazy('profile:profile_view')
+    login_url = reverse_lazy('login')
+
+    def get_success_url(self):
+        order_id = self.request.session.get('order_id')
+        order = Order.objects.get(id=order_id)
+        if order.status1:
+            new_order = Order.objects.filter(pk=order_id).first()
+            new_order.status2 = 'The order was canceled'
+            new_order.save()
+            return reverse_lazy('profile:profile_view')
