@@ -24,17 +24,19 @@ class CreateBook(LoginRequiredMixin, CreateView):
     login_url = '/login'
 
 
-class UpdateBook(UpdateView):
+class UpdateBook(LoginRequiredMixin, UpdateView):
     template_name = 'books/update_book.html'
     model = models.Book
     form_class = forms.UpdateBook
     success_url = '/book'
+    login_url = '/login'
 
 
-class DeleteBookView(DeleteView):
+class DeleteBookView(LoginRequiredMixin, DeleteView):
     model = models.Book
     template_name = 'refs/delete_view.html'
     success_url = '/book'
+    login_url = '/login'
 
 
 class BookSearch(ListView):
