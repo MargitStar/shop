@@ -10,5 +10,5 @@ class TopBooksListView(TemplateView):
 
     def get_context_data(self, **kwargs):
         filtered = models.Book.objects.order_by('-entry_date')
-        return {'books': filtered[0:10]}
-
+        most_popular = models.Book.objects.order_by('-price')
+        return {'books': filtered[0:10], 'most_popular': most_popular[::-1][0:10]}
