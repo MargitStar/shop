@@ -29,7 +29,7 @@ class SAdminOrderList(LoginRequiredMixin, ListView):
 class SAdminOrderUpdate(LoginRequiredMixin, UpdateView):
     model = Order
     template_name = 's_admin/order/s_admin_order_update.html'
-    fields = ('status2', 'delivery_address', 'contact_phone', 'comment')
+    fields = ('status1', 'status2', 'delivery_address', 'contact_phone', 'comment')
     success_url = reverse_lazy('s_admin:s_admin_order_list')
 
     def get_queryset(self):
