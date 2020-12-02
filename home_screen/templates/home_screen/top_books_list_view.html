@@ -12,13 +12,32 @@
                     <img class="card-img-top" src="{{ book.cover_photo.url }}" alt="Card image cap" width="100" height="200">
                     <div class="card-body">
                         <h5 class="card-title">{{ book.name.title }}</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <p class="card-text"> Publishing house: {{ book.publishing_house }}<br>
+                            Series: {{ book.series }}<br>
+                            Price: {{ book.price }}
+                        </p>
                         <a href="/book/{{ book.pk }}" class="btn btn-primary">View</a>
                     </div>
                 </div>
             </div>
         {% endfor %}
-
+   </div>
+<h1>The best price</h1>
+    <div class="row">
+        {% for book in most_popular %}
+            <div class="col">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="{{ book.cover_photo.url }}" alt="Card image cap" width="100" height="200">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.name.title }}</h5>
+                        <p class="card-text"> Publishing house: {{ book.publishing_house }}<br>
+                            Series: {{ book.series }}<br>
+                            Price: {{ book.price }}
+                        </p>
+                        <a href="/book/{{ book.pk }}" class="btn btn-primary">View</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 {% endblock body %}
