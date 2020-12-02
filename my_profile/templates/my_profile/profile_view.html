@@ -92,7 +92,7 @@
         {% if foo.order %}
             <b>Order № {{ foo.order.id }}</b></br>
             <b>Order Status: {{ foo.order.status2 }}</b>
-            <a href="{% url 'order:update_order' foo.order.id %}">update</a>
+            <a class='btn btn-secondary' href="{% url 'order:update_order' foo.order.id %}">Update</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
